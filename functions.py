@@ -1,4 +1,4 @@
-import random
+import random, pyodbc
 
 def hp(base,ev,level):
     hp = (2 * base + 31 + ev/4 * level)/100 + level + 10
@@ -71,3 +71,12 @@ def number(num):
         return "0" + num
     else:
         return num
+
+def cal_type(atk, dfc):
+    db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=C:\Users\13918\Documents\Summer\Pokemon-Battle-Simulation\asset\database\Types.accdb;')
+    cursor = db.cursor()
+    cursor.execute("select " + atk[:3] + " from " + dfc.split(" ")[0] + " where Type = '" + dfc + "'")
+    result = float(cursor.fetchone()[0])
+    cursor.close()
+    db.close()
+    return result
