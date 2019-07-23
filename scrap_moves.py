@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
 import requests, pyodbc
-import lxml.html as lh
-import pandas as pd
 db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=C:\Users\13918\Documents\Summer\Pokemon-Battle-Simulation\asset\database\BaseStatus.accdb;')
 cursor = db.cursor()
 cursor.execute("select EnName from BaseStat")
