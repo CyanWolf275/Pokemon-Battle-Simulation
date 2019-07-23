@@ -1,18 +1,18 @@
-import random
+import random, pyodbc
 
-def hp(base,IV,ev,level):
-    hp = (2 * base + IV + ev/4 * level)/100 + level + 10
+def hp(base,ev,level):
+    hp = (2 * base + 31 + ev/4 * level)/100 + level + 10
     return int(hp)
 
-def other_state(base,IV,ev,level,nature):
-    other_state = ((2 * base + IV + ev/4 * level)/100 + 5) * nature
+def other_state(base,ev,level,nature):
+    other_state = ((2 * base + 31 + ev/4 * level)/100 + 5) * nature
     return int(other_state)
 
 def damage(level,power,attack,defense,modifier):
     damage = (((2 * level / 5 + 2) * power * attack / defense/50) + 2) * modifier
     return int(damage)
 
-def modifier(weather,Type,critical_hit,match,adaptability,type_effectiveness,burn):
+def modifier(weather,Type,critical_hit,p_type,m_type,adaptability,type_effectiveness,burn):
     
     #critical_hit: whether the hit is a critical hit
     #match: if the move's type matches any of the user's types
@@ -23,7 +23,7 @@ def modifier(weather,Type,critical_hit,match,adaptability,type_effectiveness,bur
     weather_num = weather(weather,Type)
     critical_num = critical_hit(critical_hit)
     random_num = random.randint(85,100)/100
-    stab_num = STAB(match,adaptability)
+    stab_num = STAB(p_type,m_type,adaptability)
     type_num = type_effectiveness
     burn_num = burn(burn)
     
@@ -44,15 +44,39 @@ def weather(weather,Type):
         return 1
     
 def critical_hit(critical):
-    if critical:
+    if critical == 0:
+        num = random.randint(1,100)
+        if num < 6.25:
+            temp = True
+        else:
+            temp = False
+            
+    if critical == 1:
+        num = random.randint(1,100)
+        if num < 12.5:
+            temp = True
+        else:
+            temp = False
+    
+    if critical == 2:
+        num = random.randint(1,100)
+        if num < 50:
+            temp = True
+        else:
+            temp = False
+            
+    if critical >= 3:
+        temp = True
+
+    if temp:
         return 2
     else:
         return 1
     
-def STAB(match,adaptability):
-    if match and adaptability:
+def STAB(p_type,m_type,adaptability):
+    if m_type in p_type and adaptability:
         return 2
-    elif match:
+    elif m_type in p_type:
         return 1.5
     else:
         return 1
@@ -71,3 +95,12 @@ def number(num):
         return "0" + num
     else:
         return num
+
+def cal_type(atk, dfc):
+    db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=C:\Users\13918\Documents\Summer\Pokemon-Battle-Simulation\asset\database\Types.accdb;')
+    cursor = db.cursor()
+    cursor.execute("select " + atk[:3] + " from " + dfc.split(" ")[0] + " where Type = '" + dfc + "'")
+    result = float(cursor.fetchone()[0])
+    cursor.close()
+    db.close()
+    return result
