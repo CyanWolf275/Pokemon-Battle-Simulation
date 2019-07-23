@@ -1,11 +1,11 @@
 import random
 
-def hp(base,IV,ev,level):
-    hp = (2 * base + IV + ev/4 * level)/100 + level + 10
+def hp(base,ev,level):
+    hp = (2 * base + 31 + ev/4 * level)/100 + level + 10
     return int(hp)
 
-def other_state(base,IV,ev,level,nature):
-    other_state = ((2 * base + IV + ev/4 * level)/100 + 5) * nature
+def other_state(base,ev,level,nature):
+    other_state = ((2 * base +  + ev/4 * level)/100 + 5) * nature
     return int(other_state)
 
 def damage(level,power,attack,defense,modifier):
