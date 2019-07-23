@@ -44,7 +44,31 @@ def weather(weather,Type):
         return 1
     
 def critical_hit(critical):
-    if critical:
+    if critical == 0:
+        num = random.randint(1,100)
+        if num < 6.25:
+            temp = True
+        else:
+            temp = False
+            
+    if critical == 1:
+        num = random.randint(1,100)
+        if num < 12.5:
+            temp = True
+        else:
+            temp = False
+    
+    if critical == 2:
+        num = random.randint(1,100)
+        if num < 50:
+            temp = True
+        else:
+            temp = False
+            
+    if critical >= 3:
+        temp = True
+
+    if temp:
         return 2
     else:
         return 1
