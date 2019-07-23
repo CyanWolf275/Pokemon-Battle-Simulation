@@ -1,4 +1,4 @@
-import socket, pyodbc
+import socket, pyodbc, functions
 
 class server(object):
     

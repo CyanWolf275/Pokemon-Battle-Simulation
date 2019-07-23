@@ -2,18 +2,21 @@ class Pokemon:
     
     #attributes:
     #name
-    #attack
-    #defense
+    #Attack
+    #Defense
     #SpAttack
     #SpDefence
     #Speed
     #FrontPic
     #BackPic
+    #level
+    #critical
+    #ability
     
-    def __init__(self,name,attack,defense,SpAttack,SpDefence,Speed,FrontPic,BackPic):
+    def __init__(self,name,Attack,Defense,SpAttack,SpDefence,Speed,FrontPic,BackPic):
         self.name = name
-        self.attack = attack
-        self.defense = defense
+        self.Attack = Attack
+        self.Defense = Defense
         self.SpAttack = SpAttack
         self.SpDefence = SpDefence
         self.Speed = Speed
