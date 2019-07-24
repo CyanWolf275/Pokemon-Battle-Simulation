@@ -25,8 +25,3 @@ class Pokemon:
         self.level = level
         self.critical = critical
         self.ability = ability
-        self.atk_mod = 1
-        self.def_mod = 1
-        self.spatk_mod = 1
-        self.spdef_mod = 1
-        self.spd_mod = 1
