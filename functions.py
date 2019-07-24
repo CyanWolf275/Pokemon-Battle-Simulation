@@ -97,7 +97,8 @@ def number(num):
         return num
 
 def cal_type(atk, dfc):
-    db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=C:\Users\13918\Documents\Summer\Pokemon-Battle-Simulation\asset\database\Types.accdb;')
+    db = pyodbc.connect(
+        r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation\asset\database\Types.accdb;')
     cursor = db.cursor()
     cursor.execute("select " + atk[:3] + " from " + dfc.split(" ")[0] + " where Type = '" + dfc + "'")
     result = float(cursor.fetchone()[0])

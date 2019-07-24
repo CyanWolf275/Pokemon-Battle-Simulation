@@ -53,16 +53,35 @@ def main():
                     client_button = button('C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\client.png', 750, 50, 900, 300)
                     client_button.show_button(screen2)
                     display_Image(screen2, 'C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\selection.png', 200, 50, 550, 150)
+                    enter_button = button('C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\enter.jpg', 800, 525, 950, 600)
+                    enter_button.show_button(screen2)
                     slst = server_button.coordinates()
                     clst = client_button.coordinates()
-                    #display_Text(screen2, "Have Funn")
+                    elst = enter_button.coordinates()
                     pygame.font.init()
                     font = pygame.font.SysFont("arial", 24)
                     mts(screen2, font, "Ash", (0,0,0), 625, 320)
                     mts(screen2, font, "Serena", (0,0,0), 765, 320)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if(check_Bounds(slst)):
+                    #server = srv(opponent_ip, opponent_port)
+                    display_Image(screen2, 'C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\art.jpg', slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
+                    #display_Line(screen2, (255,0,0), slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
+                elif(check_Bounds(clst)):
+                    display_Image(screen2, 'C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\art.jpg', clst[0] - 10, clst[3] + 10, clst[2] + 10, clst[3] + 50)
+                    '''
+                    opponent_ip = input("Please Enter Your Opponent's IP Address")
+                    opponent_port = input("Please Enter Your Opponent's Port Address")
+                    '''
+
                     
-
-
+                    
+'''                 
+def display_Line(screen, color, x1, y1, x2, y2):
+    line = pygame.draw.line(screen, color, (x1, y1), (x2, y2), width = 15)
+    
+    pygame.display.update()
+'''
 def mts(screen, font, text, textcolor, x, y):
     text = font.render(text, True, textcolor)
     screen.blit(text, [x, y])
@@ -71,14 +90,6 @@ def mts(screen, font, text, textcolor, x, y):
 def display_Image(screen, file_abspath, x1, y1, x2, y2 ):
     image = pygame.transform.scale(pygame.image.load(file_abspath), (abs(x2 - x1), abs(y2 - y1)))
     screen.blit(image, (x1, y1))
-    pygame.display.update()
-
-def display_Text(screen, text):
-    font = pygame.font.Font('Aerial', 32)
-    textSurface = font.render(text, True, "black")
-    rect = textSurface.get_rect()
-    rect.center = (100, 100)
-    screen.blit(textSurface, rect)
     pygame.display.update()
 
 def display_Homescreen(screen):

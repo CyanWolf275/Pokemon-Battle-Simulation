@@ -6,7 +6,7 @@ class server(object):
     def __init__(self, ip, port):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.info = (ip, port)
-        self.move_db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=C:\Users\13918\Documents\Summer\Pokemon-Battle-Simulation\asset\database\BaseStatus.accdb;').cursor()
+        self.move_db = pyodbc.connect( r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};' r'DBQ=C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation\asset\database\BaseStatus.accdb;').cursor()
         self.s.bind(self.info)
         self.conn = None
     
@@ -34,3 +34,9 @@ s = server("127.0.0.1", 1000)
 print(s.connect())
 s.conn.sendall("123")
 
+<<<<<<< HEAD
+    def act(self, pkmn, move):
+        #self.move_db.execute("select * from Status where EnName = '" + move + "'")
+        pass
+=======
+>>>>>>> 37fb2b96fb541dec85d3ad8c809a9e3ff83b091c
