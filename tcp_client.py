@@ -10,7 +10,11 @@ class client(object):
     def connect(self):
         '''Connect to a server. Returns True if succeeded, otherwise False. '''
         try:
-            s.connect(self.info)
+            self.s.connect(self.info)
             return True
         except:
             return False
+
+s = client("127.0.0.1", 1000)
+s.connect()
+print(s.s.recv())

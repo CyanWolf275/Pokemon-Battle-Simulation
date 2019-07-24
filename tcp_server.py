@@ -12,8 +12,8 @@ class server(object):
     
     def connect(self):
         '''Wait until a connection is established and returns the client's ip address. '''
-        s.listen(1)
-        self.conn, ip = s.accept()
+        self.s.listen(1)
+        self.conn, ip = self.s.accept()
         return ip
 
     def act(self, pkmn, mv):
@@ -30,5 +30,7 @@ class server(object):
         data = conn.recv().split(", ")
         return {"hp": data[0], "status": data[1]}
 
-
+s = server("127.0.0.1", 1000)
+print(s.connect())
+s.conn.sendall("123")
 
