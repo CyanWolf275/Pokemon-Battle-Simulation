@@ -57,14 +57,16 @@ def main():
                     clst = client_button.coordinates()
                     #display_Text(screen2, "Have Funn")
                     pygame.font.init()
-                    font = pygame.font.Font(None, 60)
-                    mts(screen2, font, "hey", (0,0,0), 150, 150)
+                    font = pygame.font.SysFont("arial", 24)
+                    mts(screen2, font, "Ash", (0,0,0), 625, 320)
+                    mts(screen2, font, "Serena", (0,0,0), 765, 320)
+                    
 
 
 def mts(screen, font, text, textcolor, x, y):
     text = font.render(text, True, textcolor)
     screen.blit(text, [x, y])
-    pygame.display.update
+    pygame.display.update()
 
 def display_Image(screen, file_abspath, x1, y1, x2, y2 ):
     image = pygame.transform.scale(pygame.image.load(file_abspath), (abs(x2 - x1), abs(y2 - y1)))
