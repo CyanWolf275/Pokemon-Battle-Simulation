@@ -1,6 +1,7 @@
 import pygame
 import pygame.math
 import os
+
 from pygame.locals import *
 
 SCREENSIZE_X = 1000
@@ -32,7 +33,10 @@ def main():
     #print(os.getcwd())
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
     pygame.display.set_caption('home screen')
-    active_screen = True
+    #booleans for disabling button functions
+    active_Screen = True
+    active_Screen2 = False
+    #booleans for button functions
     active_start = False
     active_help = False
     active_server = False
@@ -73,12 +77,12 @@ def main():
             mts(screen, font, "Ash", (0, 0, 0), 625, 320)
             mts(screen, font, "Serena", (0, 0, 0), 765, 320)
             active_start = False
-            active_screen = False
+            active_Screen = False
         if active_server == True:
             display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
             active_server = False
         elif active_client == True:
-            display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] + 10, clst[3] + 50)
+            display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
             active_client = False
             
              
@@ -87,29 +91,22 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if check_Bounds(lst) and active_screen:
+                if check_Bounds(lst) and active_Screen:
                     
                     active_start = True
-                    
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if(check_Bounds(slst)):
-                    #server = srv(opponent_ip, opponent_port)
-                    
+                    active_Screen2 = True
+                if(check_Bounds(slst) and active_Screen2):
                     active_server = True
                     #display_Line(screen2, (255,0,0), slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
-                elif(check_Bounds(clst)):
+                elif(check_Bounds(clst) and active_Screen2):
                     active_client = True
+                
         pygame.display.update()
-                    
-                     
 
-def display_Screen(screen_name):
-    screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
-    pygame.display.set_caption(screen_name)
 def mts(screen, font, text, textcolor, x, y):
     text = font.render(text, True, textcolor)
     screen.blit(text, [x, y])
-    pygame.display.update()
+    #pygame.display.update()
 
 def display_Image(screen, file_abspath, x1, y1, x2, y2 ):
     image = pygame.transform.scale(pygame.image.load(file_abspath), (abs(x2 - x1), abs(y2 - y1)))
@@ -119,7 +116,7 @@ def display_Image(screen, file_abspath, x1, y1, x2, y2 ):
 def display_Homescreen(screen):
     homescreen = pygame.transform.scale(pygame.image.load('Pokemon-Battle-Simulation\\asset\\image\\colorscreen.jpg'), (SCREENSIZE_X, SCREENSIZE_Y))
     screen.blit(homescreen, (0, 0))
-    pygame.display.update()
+    #pygame.display.update()
 
 def check_Bounds(lst):
     if pygame.mouse.get_pos()[0] > lst[0] and pygame.mouse.get_pos()[0] < lst[2] and pygame.mouse.get_pos()[1] > lst[1] and pygame.mouse.get_pos()[1] < lst[3]:
@@ -131,6 +128,6 @@ def display_Background(screen):
     
     screen.blit(background, (0, 0))
 
-    pygame.display.update()
+    #pygame.display.update()
    
 main()
