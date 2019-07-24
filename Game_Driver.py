@@ -1,11 +1,13 @@
 import pygame
 import pygame.math
 import os
+import pokemon
 
 from pygame.locals import *
 
 SCREENSIZE_X = 1000
 SCREENSIZE_Y = 618
+CONVERSION_FACTOR = 50
 # these coordinates are bounding points
 class button:
     def __init__(self, image, x1, y1, x2, y2):
@@ -28,7 +30,6 @@ class button:
     def coordinates(self):
         return[self.x1,self.y1,self.x2,self.y2]
 
-
 def main():
     #print(os.getcwd())
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
@@ -43,6 +44,7 @@ def main():
     active_client = False
     active_enter = False
     screen.fill((255, 255, 255))
+    lst_pokemon = []
     running = True
     display_Homescreen(screen)
     #start_button = button('C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\start.png', 700, 490, 900, 615)
@@ -83,7 +85,10 @@ def main():
             active_server = False
         elif active_client == True:
             display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
-            active_client = False
+        if active_enter == True:
+            display_Background(screen)
+            
+
             
              
         for event in pygame.event.get():
@@ -100,6 +105,8 @@ def main():
                     #display_Line(screen2, (255,0,0), slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
                 elif(check_Bounds(clst) and active_Screen2):
                     active_client = True
+                elif(check_Bounds(elst) and active_Screen2):
+                    active_enter = True
                 
         pygame.display.update()
 
@@ -125,9 +132,9 @@ def check_Bounds(lst):
 
 def display_Background(screen):
     background = pygame.transform.scale(pygame.image.load('Pokemon-Battle-Simulation\\asset\\image\\white.png'), (SCREENSIZE_X, SCREENSIZE_Y))
-    
     screen.blit(background, (0, 0))
 
     #pygame.display.update()
-   
+
+
 main()
