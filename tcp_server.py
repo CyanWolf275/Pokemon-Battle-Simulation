@@ -40,8 +40,13 @@ class server(object):
     def round(self):
         while self.recv1 == "" or self.recv2 == "":
             time.sleep(0.1)
-        lst1 = self.recv1.split(" ")
-        lst2 = self.recv2.split(" ")
+        lst1 = self.recv1.split(", ")
+        pkmn1 = lst1[0].split(" ")
+        mv1 = lst1[1].split(" ")
+        lst2 = self.recv2.split(", ")
+        pkmn2 = lst2[0].split(" ")
+        mv2 = lst2[1].split(" ")
+        
     
 def main():
     s = server("", 7788)
