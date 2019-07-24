@@ -57,10 +57,4 @@ def main():
     s.round()
     s.s.close()
 
-<<<<<<< HEAD
 main()
-=======
-    def act(self, pkmn, move):
-        #self.move_db.execute("select * from Status where EnName = '" + move + "'")
-        pass
->>>>>>> 4c2cfba3f12d7c5127f79f83ec2b273b14f77a4f
