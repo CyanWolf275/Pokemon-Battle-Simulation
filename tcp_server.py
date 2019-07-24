@@ -34,9 +34,3 @@ s = server("127.0.0.1", 1000)
 print(s.connect())
 s.conn.sendall("123")
 
-<<<<<<< HEAD
-    def act(self, pkmn, move):
-        #self.move_db.execute("select * from Status where EnName = '" + move + "'")
-        pass
-=======
->>>>>>> 37fb2b96fb541dec85d3ad8c809a9e3ff83b091c

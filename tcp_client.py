@@ -15,10 +15,3 @@ class client(object):
             return True
         except:
             return False
-<<<<<<< HEAD
-
-s = client("127.0.0.1", 1000)
-s.connect()
-print(s.s.recv())
-=======
->>>>>>> cf9a3b434b09322085c1623249f158ba7c771ac4
