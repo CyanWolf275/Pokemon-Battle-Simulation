@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import socket, pyodbc
-=======
 import socket, pyodbc, functions, time, sys
->>>>>>> cdb968da2ffbc30649795f9c3dea40bb956148a4
 from random import random
 import multiprocessing
 
@@ -72,11 +68,6 @@ def main():
     s.conn.close()
     s.s.close()
 
-<<<<<<< HEAD
     def act(self, pkmn, move):
         #self.move_db.execute("select * from Status where EnName = '" + move + "'")
         pass
-=======
-main()
-print("exit")
->>>>>>> cdb968da2ffbc30649795f9c3dea40bb956148a4

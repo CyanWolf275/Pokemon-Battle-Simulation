@@ -29,9 +29,10 @@ class button:
 
 
 def main():
-    print(os.getcwd())
+    #print(os.getcwd())
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
     pygame.display.set_caption('home screen')
+    active_screen = True
     active_start = False
     active_help = False
     active_server = False
@@ -41,23 +42,18 @@ def main():
     running = True
     display_Homescreen(screen)
     #start_button = button('C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\start.png', 700, 490, 900, 615)
-    start_button = button(
-        'Pokemon-Battle-Simulation\\asset\\image\\start.png', 700, 490, 900, 615)
+    start_button = button('Pokemon-Battle-Simulation\\asset\\image\\start.png', 700, 490, 900, 615)
     start_button.show_button(screen)
-    help_button = button(
-        'Pokemon-Battle-Simulation\\asset\\image\\help.png', 200, 500, 400, 600)
+    help_button = button('Pokemon-Battle-Simulation\\asset\\image\\help.png', 200, 500, 400, 600)
     help_button.show_button(screen)
     lst = start_button.coordinates()
     alst = help_button.coordinates()
-    server_button = button(
-        'Pokemon-Battle-Simulation\\asset\\image\\server.png', 600, 50, 700, 300)
+    server_button = button('Pokemon-Battle-Simulation\\asset\\image\\server.png', 600, 50, 700, 300)
     #server_button.show_button(screen2)
-    client_button = button(
-        'Pokemon-Battle-Simulation\\asset\\image\\client.png', 750, 50, 900, 300)
+    client_button = button('Pokemon-Battle-Simulation\\asset\\image\\client.png', 750, 50, 900, 300)
     #client_button.show_button(screen2)
     #display_Image(screen2, 'Pokemon-Battle-Simulation\\asset\\image\\selection.png', 200, 50, 550, 150)
-    enter_button = button(
-        'Pokemon-Battle-Simulation\\asset\\image\\enter.jpg', 800, 525, 950, 600)
+    enter_button = button('Pokemon-Battle-Simulation\\asset\\image\\enter.jpg', 800, 525, 950, 600)
     slst = server_button.coordinates()
     clst = client_button.coordinates()
     elst = enter_button.coordinates()
@@ -77,6 +73,7 @@ def main():
             mts(screen, font, "Ash", (0, 0, 0), 625, 320)
             mts(screen, font, "Serena", (0, 0, 0), 765, 320)
             active_start = False
+            active_screen = False
         if active_server == True:
             display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
             active_server = False
@@ -90,7 +87,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if check_Bounds(lst):
+                if check_Bounds(lst) and active_screen:
                     
                     active_start = True
                     

@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import socket, pyodbc
-=======
 import socket, pyodbc, functions, time, sys
 import multiprocessing
->>>>>>> cdb968da2ffbc30649795f9c3dea40bb956148a4
 
 class client(object):
 
