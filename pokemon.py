@@ -1,4 +1,3 @@
-import Move
 class Pokemon:
     
     #attributes:
@@ -26,4 +25,3 @@ class Pokemon:
         self.level = level
         self.critical = critical
         self.ability = ability
-        self.mv1 = Move()
