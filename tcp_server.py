@@ -1,4 +1,4 @@
-import socket, pyodbc, functions
+import socket, pyodbc
 from random import random
 
 class server(object):
@@ -32,9 +32,6 @@ class server(object):
 
 
 
-<<<<<<< HEAD
     def act(self, pkmn, move):
         #self.move_db.execute("select * from Status where EnName = '" + move + "'")
         pass
-=======
->>>>>>> 37fb2b96fb541dec85d3ad8c809a9e3ff83b091c
