@@ -48,6 +48,7 @@ def main():
     active_Screen = True
     active_Screen2 = False
     active_Screen3 = False
+    active_Screen4 = False
     #booleans for button functions
     active_start = False
     active_help = False
@@ -55,6 +56,8 @@ def main():
     active_client = False
     active_enter = False
     active_search = False
+    active_startgame = False
+    finished_choice = False
 
     screen.fill((255, 255, 255))
     user_choice = ''
@@ -78,6 +81,8 @@ def main():
     elst = enter_button.coordinates()
     search_button = button('asset\\image\\Magnify.png', SCREENSIZE_X//2 - 200, SCREENSIZE_Y//2 - 150, SCREENSIZE_X//2 + 200, SCREENSIZE_Y//2 + 150)
     srchLst = search_button.coordinates()
+    startgame_button = button('asset\\image\\play.jpg', 850, 490, 1000, 615)
+    sglst = startgame_button.coordinates()
     while running:
 
         #Creation of homescreen and a couple buttons
@@ -106,6 +111,7 @@ def main():
             display_Background(screen)
             search_button.show_button(screen)
             mts(screen, font, "Search For a Pokemon to Make Your Deck", (0,0,0), srchLst[0] - 20, srchLst[1] - 50)
+            startgame_button.show_button(screen)
             active_Screen2 == False
         if active_search == True:
             mts(screen, font, "BACKPACK", (0, 0, 255), 800, 50)
@@ -117,6 +123,10 @@ def main():
                 if(check_lst(user_choice, pokemon_lst)):
                     choice_lst.append(Pokemon.Pokemon(user_choice))
                     mts(screen, font, user_choice, (0, 0, 0), 800, (x + 2) * CONVERSION_FACTOR)
+            finished_choice = True
+        if active_startgame:
+            pass
+
                 
             
             
@@ -144,6 +154,8 @@ def main():
                     active_Screen3 = True
                 if check_Bounds(srchLst) and active_Screen3:
                     active_search = True
+                if check_Bounds(sglst) and active_Screen3 and finished_choice:
+                    active_Screen4 = True
                 
                     
                 
