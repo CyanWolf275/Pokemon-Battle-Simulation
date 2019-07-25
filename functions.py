@@ -109,7 +109,7 @@ def stage(val, st):
     '''returns the actual value under the effect of stage (-6 - +6)'''
     stage = [-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6]
     multiplier = [2/8,2/7,2/6,2/5,2/4,2/3,2/2,3/2,4/2,5/2,6/2,7/2,8/2]
-    for x in range(0,len(stage)-1):
+    for x in range(0,len(stage)):
         if stage[x] == st:
             return int(val * multiplier[x])
 

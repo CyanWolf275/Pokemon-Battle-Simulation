@@ -51,6 +51,4 @@ class Pokemon(object):
         db.close()
     
     def __str__(self):
-        return "/".join([self.name, str(self.HP), str(self.Attack), str(self.Defense), str(self.SpAttack), str(self.SpDefence), str(self.Speed), str(self.level), str(self.critical), str(self.accuracy), str(self.evasion), str(self.atk_mod), str(self.def_mod), str(self.spatk_mod), str(self.spdef_mod), str(self.spd_mod), self.stat, self.type]) 
-
-c = Pokemon("Bulbasaur")
+        return "/".join([self.name, str(self.HP), str(self.Attack), str(self.Defense), str(self.SpAttack), str(self.SpDefence), str(self.Speed), str(self.level), str(self.critical), str(self.accuracy), str(self.evasion), str(self.atk_mod), str(self.def_mod), str(self.spatk_mod), str(self.spdef_mod), str(self.spd_mod), self.stat, self.type])
