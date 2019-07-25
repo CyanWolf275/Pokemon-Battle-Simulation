@@ -1,6 +1,7 @@
 import pygame
 import pygame.math
 import os
+import importlib
 from pygame.locals import *
 
 
@@ -36,18 +37,20 @@ class button:
         return[self.x1,self.y1,self.x2,self.y2]
 
 def main():
-    #print(os.getcwd())
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
     pygame.display.set_caption('home screen')
-    #booleans for disabling button functions
+    #booleans for disabling screen functions
     active_Screen = True
     active_Screen2 = False
+    active_Screen3 = False
     #booleans for button functions
     active_start = False
     active_help = False
     active_server = False
     active_client = False
     active_enter = False
+    active_search = False
+
     screen.fill((255, 255, 255))
     lst_pokemon = []
     running = True
@@ -68,6 +71,8 @@ def main():
     slst = server_button.coordinates()
     clst = client_button.coordinates()
     elst = enter_button.coordinates()
+    search_button = button('Pokemon-Battle-Simulation\\asset\\image\\Magnify.png', SCREENSIZE_X//2 - 200, SCREENSIZE_Y//2 - 150, SCREENSIZE_X//2 + 200, SCREENSIZE_Y//2 + 150)
+    srchLst = search_button.coordinates()
     while running:
 
         #Creation of homescreen and a couple buttons
@@ -83,6 +88,7 @@ def main():
             font = pygame.font.SysFont("arial", 24)
             mts(screen, font, "Ash", (0, 0, 0), 625, 320)
             mts(screen, font, "Serena", (0, 0, 0), 765, 320)
+            mts(screen, font, "Please choose your character", (0,0,0), slst[0] - 400, slst[1])
             active_start = False
             active_Screen = False
         if active_server == True:
@@ -90,8 +96,19 @@ def main():
             active_server = False
         elif active_client == True:
             display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
+            active_client = False
         if active_enter == True:
+            os.system('cls')
             display_Background(screen)
+            search_button.show_button(screen)
+            mts(screen, font, "Search For a Pokemon to Make Your Deck", (0,0,0), srchLst[0] - 20, srchLst[1] - 50)
+            active_Screen2 == False
+        if active_search == True:
+            os.system('cls')
+            get_Pokemon(screen)
+
+
+            
             
 
             
@@ -105,6 +122,7 @@ def main():
                     
                     active_start = True
                     active_Screen2 = True
+                    
                 if(check_Bounds(slst) and active_Screen2):
                     active_server = True
                     #display_Line(screen2, (255,0,0), slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
@@ -112,8 +130,17 @@ def main():
                     active_client = True
                 elif(check_Bounds(elst) and active_Screen2):
                     active_enter = True
+                    active_Screen3 = True
+                if check_Bounds(srchLst) and active_Screen3:
+                    active_search = True
+                
+                
                 
         pygame.display.update()
+
+def get_Pokemon(screen): 
+    user_input = input("Please enter your wanted pokemon")
+    return user_input
 
 def mts(screen, font, text, textcolor, x, y):
     text = font.render(text, True, textcolor)

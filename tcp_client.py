@@ -28,3 +28,6 @@ class client(object):
     def battle(self, pkmn, move):
         self.send(", ".join([str(pkmn), str(move)]))
         return self.receive().split(", ")
+    
+    def toString(self):
+        return ('bonjour')
