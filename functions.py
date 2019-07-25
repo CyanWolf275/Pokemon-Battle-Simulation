@@ -111,7 +111,7 @@ def stage(val, st):
     multiplier = [2/8,2/7,2/6,2/5,2/4,2/3,2/2,3/2,4/2,5/2,6/2,7/2,8/2]
     for x in range(0,len(stage)-1):
         if stage[x] == st:
-            return len(val * multiplier[x])
+            return int(val * multiplier[x])
 
 def poke_lst():
     db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=asset\database\BaseStatus.accdb;')
