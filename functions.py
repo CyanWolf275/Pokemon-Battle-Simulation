@@ -97,8 +97,7 @@ def number(num):
         return num
 
 def cal_type(atk, dfc):
-    db = pyodbc.connect(
-        r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation\asset\database\Types.accdb;')
+    db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=asset\database\Types.accdb;')
     cursor = db.cursor()
     cursor.execute("select " + atk[:3] + " from " + dfc.split(" ")[0] + " where Type = '" + dfc + "'")
     result = float(cursor.fetchone()[0])
@@ -109,3 +108,12 @@ def cal_type(atk, dfc):
 def stage(val, st):
     '''returns the actual value under the effect of stage (-6 - +6)'''
     pass
+
+def poke_lst():
+    db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=asset\database\BaseStatus.accdb;')
+    cursor = db.cursor()
+    cursor.execute("select EnName from BaseStat where ID < 152")
+    result = list(cursor)[0]
+    cursor.close()
+    db.close()
+    return result
