@@ -30,5 +30,3 @@ class Move(object):
     def __str__(self):
         '''0name, 1prop, 2cat, 3acc, 4pp, 5pwr, 6myc, 7opc'''
         return "/".join([self.name, self.prop, self.cat, str(self.acc), str(self.pp), str(self.pwr), self.my_code, self.op_code])
-    
-m = Move("Pound")
