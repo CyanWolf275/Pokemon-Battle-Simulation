@@ -41,11 +41,11 @@ class server(object):
         while self.recv1 == "" or self.recv2 == "":
             time.sleep(0.1)
         lst1 = self.recv1.split(", ")
-        pkmn1 = lst1[0].split(" ")
-        mv1 = lst1[1].split(" ")
+        pkmn1 = lst1[0].split("/")
+        mv1 = lst1[1].split("/")
         lst2 = self.recv2.split(", ")
-        pkmn2 = lst2[0].split(" ")
-        mv2 = lst2[1].split(" ")
+        pkmn2 = lst2[0].split("/")
+        mv2 = lst2[1].split("/")
         dmg1 = 0
         dmg2 = 0
         one_first = True
@@ -115,8 +115,8 @@ class server(object):
                     exec(mv1[7])
         pkmn2[1] -= dmg1
         pkmn1[1] -= dmg2
-        self.conn1.send((" ".join(pkmn2) + ", " + " ".join(pkmn1) + ", " + str(one_first)).encode())
-        self.conn2.send((" ".join(pkmn1) + ", " + " ".join(pkmn2) + ", " + str(not one_first)).encode())
+        self.conn1.send(("/".join(pkmn2) + ", " + "/".join(pkmn1) + ", " + str(one_first)).encode())
+        self.conn2.send(("/".join(pkmn1) + ", " + "/".join(pkmn2) + ", " + str(not one_first)).encode())
         self.recv1 = ""
         self.recv2 = ""
     
