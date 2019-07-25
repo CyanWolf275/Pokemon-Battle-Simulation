@@ -3,6 +3,7 @@ import pygame.math
 import os
 import importlib
 import functions, Pokemon
+import tcp_client
 from pygame.locals import *
 
 
@@ -104,6 +105,10 @@ def main():
         if active_server == True:
             display_Image(screen, 'asset\\image\\art.jpg',slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
             active_server = False
+            user_ip = input(screen, font)
+            user_port = input(screen, font)
+            client = tcp_client.client(user_ip, int(user_port))
+            
         elif active_client == True:
             display_Image(screen, 'asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
             active_client = False
@@ -155,6 +160,7 @@ def main():
                 if check_Bounds(srchLst) and active_Screen3:
                     active_search = True
                 if check_Bounds(sglst) and active_Screen3 and finished_choice:
+                    active_startgame = True
                     active_Screen4 = True
                 
                     
