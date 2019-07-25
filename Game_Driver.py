@@ -39,6 +39,7 @@ class button:
         return[self.x1,self.y1,self.x2,self.y2]
 
 def main():
+    os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
     pokemon_lst = functions.poke_lst()
     choice_lst = []
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
@@ -60,22 +61,22 @@ def main():
     running = True
     display_Homescreen(screen)
     #start_button = button('C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\start.png', 700, 490, 900, 615)
-    start_button = button('Pokemon-Battle-Simulation\\asset\\image\\start.png', 700, 490, 900, 615)
+    start_button = button('asset\\image\\start.png', 700, 490, 900, 615)
     start_button.show_button(screen)
-    help_button = button('Pokemon-Battle-Simulation\\asset\\image\\help.png', 200, 500, 400, 600)
+    help_button = button('asset\\image\\help.png', 200, 500, 400, 600)
     help_button.show_button(screen)
     lst = start_button.coordinates()
     alst = help_button.coordinates()
-    server_button = button('Pokemon-Battle-Simulation\\asset\\image\\server.png', 600, 50, 700, 300)
+    server_button = button('asset\\image\\server.png', 600, 50, 700, 300)
     #server_button.show_button(screen2)
-    client_button = button('Pokemon-Battle-Simulation\\asset\\image\\client.png', 750, 50, 900, 300)
+    client_button = button('asset\\image\\client.png', 750, 50, 900, 300)
     #client_button.show_button(screen2)
     #display_Image(screen2, 'Pokemon-Battle-Simulation\\asset\\image\\selection.png', 200, 50, 550, 150)
-    enter_button = button('Pokemon-Battle-Simulation\\asset\\image\\enter.jpg', 800, 525, 950, 600)
+    enter_button = button('asset\\image\\enter.jpg', 800, 525, 950, 600)
     slst = server_button.coordinates()
     clst = client_button.coordinates()
     elst = enter_button.coordinates()
-    search_button = button('Pokemon-Battle-Simulation\\asset\\image\\Magnify.png', SCREENSIZE_X//2 - 200, SCREENSIZE_Y//2 - 150, SCREENSIZE_X//2 + 200, SCREENSIZE_Y//2 + 150)
+    search_button = button('asset\\image\\Magnify.png', SCREENSIZE_X//2 - 200, SCREENSIZE_Y//2 - 150, SCREENSIZE_X//2 + 200, SCREENSIZE_Y//2 + 150)
     srchLst = search_button.coordinates()
     while running:
 
@@ -96,10 +97,10 @@ def main():
             active_start = False
             active_Screen = False
         if active_server == True:
-            display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
+            display_Image(screen, 'asset\\image\\art.jpg',slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
             active_server = False
         elif active_client == True:
-            display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
+            display_Image(screen, 'asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
             active_client = False
         if active_enter == True:
             display_Background(screen)
@@ -167,7 +168,7 @@ def input(screen, font, name = ''):
                     name = ""
             elif evt.type == QUIT:
                 break
-        display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\textbox.png', 250, 518, 800, 618)
+        display_Image(screen, 'asset\\image\\textbox.png', 250, 518, 800, 618)
         block = font.render(name, True, (255, 255, 255))
         rect = block.get_rect()
         rect.center = (550, 568)
@@ -191,7 +192,7 @@ def display_Image(screen, file_abspath, x1, y1, x2, y2 ):
     #pygame.display.update()
 
 def display_Homescreen(screen):
-    homescreen = pygame.transform.scale(pygame.image.load('Pokemon-Battle-Simulation\\asset\\image\\colorscreen.jpg'), (SCREENSIZE_X, SCREENSIZE_Y))
+    homescreen = pygame.transform.scale(pygame.image.load('asset\\image\\colorscreen.jpg'), (SCREENSIZE_X, SCREENSIZE_Y))
     screen.blit(homescreen, (0, 0))
     #pygame.display.update()
 
@@ -201,7 +202,7 @@ def check_Bounds(lst):
     return False
 
 def display_Background(screen):
-    background = pygame.transform.scale(pygame.image.load('Pokemon-Battle-Simulation\\asset\\image\\white.png'), (SCREENSIZE_X, SCREENSIZE_Y))
+    background = pygame.transform.scale(pygame.image.load('asset\\image\\white.png'), (SCREENSIZE_X, SCREENSIZE_Y))
     screen.blit(background, (0, 0))
 
     #pygame.display.update()
