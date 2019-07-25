@@ -29,11 +29,13 @@ class client(object):
         my_lst = recv_lst[1].split("/")
         o_lst = [op_lst[0], int(op_lst[1]), int(op_lst[2]), int(op_lst[3]), int(op_lst[4]), int(op_lst[5]), int(op_lst[6]), int(op_lst[7]), int(op_lst[8]), float(op_lst[9]), float(op_lst[10]), int(op_lst[11]), int(op_lst[12]), int(op_lst[13]), int(op_lst[14]), int(op_lst[15]), op_lst[16], op_lst[17]]
         m_lst = [my_lst[0], int(my_lst[1]), int(my_lst[2]), int(my_lst[3]), int(my_lst[4]), int(my_lst[5]), int(my_lst[6]), int(my_lst[7]), int(my_lst[8]), float(my_lst[9]), float(my_lst[10]), int(my_lst[11]), int(my_lst[12]), int(my_lst[13]), int(my_lst[14]), int(my_lst[15]), my_lst[16], my_lst[17]]
+        #can move
         result = {"first": bool(recv_lst[2]), "my_pkmn": m_lst, "op_pkmn": o_lst}
         return result
 
-b = Pokemon.Pokemon("Bulbasaur")
-c = Pokemon.Pokemon("Charmander")
-cl = client("", 1000)
-cl.battle(b, b.move_lst[0])
-cl.battle(c, c.move_lst[0])
+if __name__ == "__main__":
+    b = Pokemon.Pokemon("Bulbasaur")
+    c = Pokemon.Pokemon("Charmander")
+    cl = client("", 1000)
+    cl.battle(b, b.move_lst[0])
+    cl.battle(c, c.move_lst[0])
