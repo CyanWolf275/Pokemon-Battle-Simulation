@@ -1,4 +1,4 @@
-import socket, pyodbc, functions, time, sys
+import socket, pyodbc, functions, time
 
 class client(object):
 
@@ -27,7 +27,7 @@ class client(object):
     
     def battle(self, pkmn, move):
         self.send(", ".join([str(pkmn), str(move)]))
-        return self.receive().split(", ")
-    
-    def toString(self):
-        return ('bonjour')
+        recv_lst = self.receive().split(", ")
+        op_lst = recv_lst[0].split("/")
+        my_lst = recv_lst[1].split("/")
+        result = {"first": bool(recv_lst[2])}
