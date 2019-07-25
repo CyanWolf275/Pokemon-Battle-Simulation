@@ -3,7 +3,7 @@ class Move(object):
 
     def __init__(self, name):
         self.name = name
-        db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=asset\database\BaseStatus.accdb;')
+        db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=BaseStatus.accdb;')
         cursor = db.cursor()
         cursor.execute("select * from MoveList where Name = '" + self.name + "'")
         lst = list(cursor)[0]

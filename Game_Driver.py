@@ -40,7 +40,8 @@ class button:
         return[self.x1,self.y1,self.x2,self.y2]
 
 def main():
-    os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
+    print(os.getcwd())
+    #os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
     pokemon_lst = functions.poke_lst()
     choice_lst = []
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
