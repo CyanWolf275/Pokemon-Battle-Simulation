@@ -108,16 +108,16 @@ def main():
             mts(screen, font, "Search For a Pokemon to Make Your Deck", (0,0,0), srchLst[0] - 20, srchLst[1] - 50)
             active_Screen2 == False
         if active_search == True:
+            mts(screen, font, "BACKPACK", (0, 0, 255), 800, 50)
             for x in range(BACKPACK_SIZE):
                 user_choice = input(screen, font)
+                while(not check_lst(user_choice, pokemon_lst)):
+                    print("Please enter a valid pokemon")
+                    user_choice = input(screen, font)
                 if(check_lst(user_choice, pokemon_lst)):
                     choice_lst.append(Pokemon.Pokemon(user_choice))
-                    mts(screen, font, user_choice, (0, 0, 0), 800, x * CONVERSION_FACTOR)
-                else:
-                    
-                    while(not check_lst(user_choice, pokemon_lst)):
-                        print("Please enter a valid pokemon")
-                        user_choice = input(screen, font)
+                    mts(screen, font, user_choice, (0, 0, 0), 800, (x + 2) * CONVERSION_FACTOR)
+                
             
             
                 
@@ -151,10 +151,7 @@ def main():
         pygame.display.update()
 
 def check_lst(name, lst):
-    for pokemon_name in lst:
-        if name in pokemon_name:
-            return True
-    return False
+    return name in lst
 def input(screen, font, name = ''):
     while True:
         for evt in pygame.event.get():
