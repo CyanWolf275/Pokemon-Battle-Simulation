@@ -84,6 +84,8 @@ def main():
     srchLst = search_button.coordinates()
     startgame_button = button('asset\\image\\play.jpg', 850, 490, 1000, 615)
     sglst = startgame_button.coordinates()
+    display_Image(screen, 'asset\\image\\Pokemon\\Pikachu.png', 0, 100, 400, 500)
+    display_Image(screen, 'asset\\image\\Pokemon\\Charmander.png', 600, 100, 1000, 500)
     while running:
 
         #Creation of homescreen and a couple buttons
@@ -91,7 +93,7 @@ def main():
         if active_start == True:
             #screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
             #pygame.display.set_caption('index screen')
-            display_Background(screen)
+            display_Background(screen, 'asset\\image\\white.png')
             server_button.show_button(screen)
             client_button.show_button(screen)
             enter_button.show_button(screen)
@@ -113,7 +115,7 @@ def main():
             display_Image(screen, 'asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
             active_client = False
         if active_enter == True:
-            display_Background(screen)
+            display_Background(screen, 'asset\\image\\white.png')
             search_button.show_button(screen)
             mts(screen, font, "Search For a Pokemon to Make Your Deck", (0,0,0), srchLst[0] - 20, srchLst[1] - 50)
             startgame_button.show_button(screen)
@@ -216,8 +218,8 @@ def check_Bounds(lst):
         return True
     return False
 
-def display_Background(screen):
-    background = pygame.transform.scale(pygame.image.load('asset\\image\\white.png'), (SCREENSIZE_X, SCREENSIZE_Y))
+def display_Background(screen, file_abspath):
+    background = pygame.transform.scale(pygame.image.load(file_abspath), (SCREENSIZE_X, SCREENSIZE_Y))
     screen.blit(background, (0, 0))
 
     #pygame.display.update()
