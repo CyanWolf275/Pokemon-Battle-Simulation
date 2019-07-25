@@ -84,6 +84,8 @@ def main():
     srchLst = search_button.coordinates()
     startgame_button = button('asset\\image\\play.jpg', 850, 490, 1000, 615)
     sglst = startgame_button.coordinates()
+    display_Image(screen, 'asset\\image\\Pokemon\\Pikachu.png', 0, 100, 400, 500)
+    display_Image(screen, 'asset\\image\\Pokemon\\Charmander.png', 600, 100, 1000, 500)
     while running:
 
         #Creation of homescreen and a couple buttons
