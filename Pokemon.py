@@ -17,7 +17,7 @@ class Pokemon(object):
     #level
     #critical
     #ability
-    #client -> server: 0name, 1hp, 2atk, 3def, 4spatk, 5spdef, 6spd, 7lv, 8crt, 9acc, 10eva, 11matk, 12mdef, 13mspatk, 14mspdef, 15mspd, 16stat, 17type
+    #client -> server: 0name, 1hp, 2atk, 3def, 4spatk, 5spdef, 6spd, 7lv, 8crt, 9acc, 10eva, 11matk, 12mdef, 13mspatk, 14mspdef, 15mspd, 16stat, 17type, 18macc, 19meva
     #0name, 1prop, 2cat, 3acc, 4pp, 5pwr, 6myc, 7opc
     def __init__(self, name):
         db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=./BaseStatus.accdb;')
@@ -37,11 +37,11 @@ class Pokemon(object):
         self.critical = 0
         self.accuracy = 1.0
         self.evasion = 1.0
-        self.atk_mod = 1
-        self.def_mod = 1
-        self.spatk_mod = 1
-        self.spdef_mod = 1
-        self.spd_mod = 1
+        self.atk_mod = 0
+        self.def_mod = 0
+        self.spatk_mod = 0
+        self.spdef_mod = 0
+        self.spd_mod = 0
         self.stat = "None"
         self.type = param_lst[8]
         cursor.execute("select Move from Moves1 where EnName = '" + self.name + "'")
