@@ -1,4 +1,4 @@
-import socket, pyodbc, functions, time, threading, multiprocessing
+import socket, functions, time, threading
 from random import random
 
 class server(object):
@@ -7,7 +7,6 @@ class server(object):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.info = (ip, port)
-        #self.move_db = pyodbc.connect( r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};' r'DBQ=C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation\asset\database\BaseStatus.accdb;').cursor()
         self.s.bind(self.info)
         self.recv1 = ""
         self.recv2 = ""
@@ -131,7 +130,8 @@ def main():
     p2.start()
     s.press_start()
     print("GAME START")
-    s.round()
+    while True:
+        s.round()
     s.s.close()
 
 main()

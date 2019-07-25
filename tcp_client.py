@@ -1,10 +1,9 @@
-import socket, pyodbc, functions, time
+import socket
 
 class client(object):
 
     def __init__(self, ip, port):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        #self.move_db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ= \\asset\database\BaseStatus.accdb;').cursor()
         self.info = (ip, port)
     
     def connect(self):

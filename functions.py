@@ -110,7 +110,7 @@ def stage(val, st):
     pass
 
 def poke_lst():
-    db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=Pokemon-Battle-Simulation\asset\database\BaseStatus.accdb;')
+    db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=asset\database\BaseStatus.accdb;')
     cursor = db.cursor()
     cursor.execute("select EnName from BaseStat where ID < 152")
     result = [item[0] for item in list(cursor)]
