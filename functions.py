@@ -1,5 +1,6 @@
 import random, pyodbc
 
+
 def hp(base,ev,level):
     hp = (2 * base + 31 + ev/4 * level)/100 + level + 10
     return int(hp)

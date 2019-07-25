@@ -1,6 +1,7 @@
 import pyodbc, functions
 from Move import Move
 from random import shuffle
+import os
 
 class Pokemon(object):
     
@@ -19,6 +20,7 @@ class Pokemon(object):
     #client -> server: 0name, 1hp, 2atk, 3def, 4spatk, 5spdef, 6spd, 7lv, 8crt, 9acc, 10eva, 11matk, 12mdef, 13mspatk, 14mspdef, 15mspd, 16stat, 17type
     #0name, 1prop, 2cat, 3acc, 4pp, 5pwr, 6myc, 7opc
     def __init__(self, name):
+        os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
         db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=asset\database\BaseStatus.accdb;')
         cursor = db.cursor()
         cursor.execute("select * from BaseStat where EnName = '" + name + "'")
