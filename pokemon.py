@@ -12,7 +12,8 @@ class Pokemon(object):
     #level
     #critical
     #ability
-    #client -> server: name, hp, atk, def, spatk, spdef, spd, lv, crt, acc, eva, matk, mdef, mspatk, mspdef, mspd, stat
+    #client -> server: 0name, 1hp, 2atk, 3def, 4spatk, 5spdef, 6spd, 7lv, 8crt, 9acc, 10eva, 11matk, 12mdef, 13mspatk, 14mspdef, 15mspd, 16stat, 17type
+    #0name, 1prop, 2cat, 3acc, 4pp, 5pwr, 6myc, 7opc
     def __init__(self,name,Attack,Defense,SpAttack,SpDefence,Speed,FrontPic,BackPic,level,critical,ability):
         self.name = name
         self.HP = HP

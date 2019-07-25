@@ -12,7 +12,7 @@ def damage(level,power,attack,defense,modifier):
     damage = (((2 * level / 5 + 2) * power * attack / defense/50) + 2) * modifier
     return int(damage)
 
-def modifier(weather,Type,critical_hit,p_type,m_type,adaptability,type_effectiveness,burn):
+def modifier(weather,Type,critical_hit,p_type,m_type,adaptability,o_type,burn):
     
     #critical_hit: whether the hit is a critical hit
     #match: if the move's type matches any of the user's types
@@ -24,7 +24,7 @@ def modifier(weather,Type,critical_hit,p_type,m_type,adaptability,type_effective
     critical_num = critical_hit(critical_hit)
     random_num = random.randint(85,100)/100
     stab_num = STAB(p_type,m_type,adaptability)
-    type_num = type_effectiveness
+    type_num = cal_type(p_type, o_type)
     burn_num = burn(burn)
     
     return weather_num * critical_num * random_num * stab_num * type_num * burn_num
@@ -105,3 +105,7 @@ def cal_type(atk, dfc):
     cursor.close()
     db.close()
     return result
+
+def stage(val, st):
+    '''returns the actual value under the effect of stage (-6 - +6)'''
+    pass
