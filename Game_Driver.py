@@ -2,13 +2,14 @@ import pygame
 import pygame.math
 import os
 import importlib
-import functions
+import functions, Pokemon
 from pygame.locals import *
 
 
 SCREENSIZE_X = 1000
 SCREENSIZE_Y = 618
 CONVERSION_FACTOR = 50
+BACKPACK_SIZE = 6
 # these coordinates are bounding points
 # Giant search bar for screen 3
 # screen 3 consists of a single search button
@@ -38,7 +39,8 @@ class button:
         return[self.x1,self.y1,self.x2,self.y2]
 
 def main():
-    print(functions.poke_lst())
+    pokemon_lst = functions.poke_lst()
+    choice_lst = []
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
     pygame.display.set_caption('home screen')
     #booleans for disabling screen functions
@@ -54,7 +56,7 @@ def main():
     active_search = False
 
     screen.fill((255, 255, 255))
-    lst_pokemon = []
+    user_choice = ''
     running = True
     display_Homescreen(screen)
     #start_button = button('C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\start.png', 700, 490, 900, 615)
@@ -100,19 +102,25 @@ def main():
             display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
             active_client = False
         if active_enter == True:
-            os.system('cls')
             display_Background(screen)
             search_button.show_button(screen)
             mts(screen, font, "Search For a Pokemon to Make Your Deck", (0,0,0), srchLst[0] - 20, srchLst[1] - 50)
             active_Screen2 == False
         if active_search == True:
-            os.system('cls')
-            get_Pokemon(screen)
-
-
+            for x in range(BACKPACK_SIZE):
+                user_choice = input(screen, font)
+                if(check_lst(user_choice, pokemon_lst)):
+                    choice_lst.append(Pokemon.Pokemon(user_choice))
+                    mts(screen, font, user_choice, (0, 0, 0), 800, x * CONVERSION_FACTOR)
+                else:
+                    
+                    while(not check_lst(user_choice, pokemon_lst)):
+                        print("Please enter a valid pokemon")
+                        user_choice = input(screen, font)
             
             
-
+                
+                    
             
              
         for event in pygame.event.get():
@@ -136,9 +144,37 @@ def main():
                 if check_Bounds(srchLst) and active_Screen3:
                     active_search = True
                 
+                    
                 
                 
         pygame.display.update()
+
+def check_lst(name, lst):
+    for pokemon_name in lst:
+        if name in pokemon_name:
+            return True
+    return False
+def input(screen, font, name = ''):
+    while True:
+        for evt in pygame.event.get():
+            if evt.type == KEYDOWN:
+                if evt.unicode.isalpha():
+                    name += evt.unicode
+                elif evt.key == K_BACKSPACE:
+                    name = name[:-1]
+                elif evt.key == K_RETURN:
+                    return name
+                    name = ""
+            elif evt.type == QUIT:
+                break
+        display_Image(screen, 'Pokemon-Battle-Simulation\\asset\\image\\textbox.png', 250, 518, 800, 618)
+        block = font.render(name, True, (255, 255, 255))
+        rect = block.get_rect()
+        rect.center = (550, 568)
+        screen.blit(block, rect)
+        pygame.display.flip()
+    
+    
 
 def get_Pokemon(screen): 
     user_input = input("Please enter your wanted pokemon")
