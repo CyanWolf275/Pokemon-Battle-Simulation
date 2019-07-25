@@ -1,0 +1,47 @@
+import pyodbc, functions
+
+class Pokemon(object):
+    
+    #attributes:
+    #name
+    #Attack
+    #Defense
+    #SpAttack
+    #SpDefence
+    #Speed
+    #FrontPic
+    #BackPic
+    #level
+    #critical
+    #ability
+    #client -> server: name, hp, atk, def, spatk, spdef, spd, lv, crt, acc, eva, matk, mdef, mspatk, mspdef, mspd, stat
+    def __init__(self, name):
+        db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=asset\database\BaseStatus.accdb;')
+        cursor = db.cursor()
+        cursor.execute("select * from BaseStat where EnName = '" + name + "'")
+        param_lst = list(cursor)[0]
+        self.name = name
+        self.level = 50
+        self.HP = functions.hp(param_lst[2], 85, self.level)
+        self.Attack = functions.other_state(param_lst[3], 85, self.level, 1)
+        self.Defense = functions.other_state(param_lst[4], 85, self.level, 1)
+        self.SpAttack = functions.other_state(param_lst[5], 85, self.level, 1)
+        self.SpDefence = functions.other_state(param_lst[6], 85, self.level, 1)
+        self.Speed = functions.other_state(param_lst[7], 85, self.level, 1)
+        self.FrontPic = "asset\\image\\pokemon\\" + name + ".png"
+        self.BackPIc = "asset\\image\\pokemon\\" + name + "_b.png"
+        self.critical = 0
+        self.accuracy = 1.0
+        self.evasion = 1.0
+        self.atk_mod = 1
+        self.def_mod = 1
+        self.spatk_mod = 1
+        self.spdef_mod = 1
+        self.spd_mod = 1
+        self.stat = "None"
+        self.type = param_lst[8]
+        cursor.close()
+        db.close()
+    
+    def __str__(self):
+        return "/".join([self.name, str(self.HP), str(self.Attack), str(self.Defense), str(self.SpAttack), str(self.SpDefence), str(self.Speed), str(self.level), str(self.critical), str(self.accuracy), str(self.evasion), str(self.atk_mod), str(self.def_mod), str(self.spatk_mod), str(self.spdef_mod), str(self.spd_mod), self.stat, self.type]) 
