@@ -7,7 +7,6 @@ class Move(object):
         cursor = db.cursor()
         cursor.execute("select * from MoveList where Name = '" + self.name + "'")
         lst = list(cursor)[0]
-        print(lst)
         self.prop = lst[2]
         self.cat = lst[3]
         self.acc = lst[4]
@@ -29,4 +28,4 @@ class Move(object):
     
     def __str__(self):
         '''0name, 1prop, 2cat, 3acc, 4pp, 5pwr, 6myc, 7opc'''
-        return "/".join([self.name, self.prop, self.cat, str(self.acc), str(self.pp), str(self.pwr), self.my_code, self.op_code])
+        return "/".join([self.name, self.prop, self.cat, str(self.acc), str(self.pp), str(self.pwr), "", ""])

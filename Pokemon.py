@@ -1,4 +1,5 @@
-import pyodbc, functions, Move
+import pyodbc, functions
+from Move import Move
 from random import shuffle
 
 class Pokemon(object):

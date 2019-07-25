@@ -35,5 +35,8 @@ class client(object):
         result = {"first": bool(recv_lst[2]), "my_pkmn": m_lst, "op_pkmn": o_lst}
         return result
 
-b = Pokemon("Bulbasaur")
-c = Pokemon()
+b = Pokemon.Pokemon("Bulbasaur")
+c = Pokemon.Pokemon("Charmander")
+cl = client("", 1000)
+cl.battle(b, b.move_lst[0])
+cl.battle(c, c.move_lst[0])
