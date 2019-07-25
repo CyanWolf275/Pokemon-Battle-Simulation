@@ -1,4 +1,4 @@
-import socket
+import socket, Pokemon, Move
 
 class client(object):
 
@@ -25,7 +25,8 @@ class client(object):
         return self.receive()
     
     def battle(self, pkmn, move):
-        self.send(", ".join([str(pkmn), str(move)]))
+        print(", ".join([str(pkmn), str(move)]))
+        return
         recv_lst = self.receive().split(", ")
         op_lst = recv_lst[0].split("/")
         my_lst = recv_lst[1].split("/")
@@ -33,3 +34,6 @@ class client(object):
         m_lst = [my_lst[0], int(my_lst[1]), int(my_lst[2]), int(my_lst[3]), int(my_lst[4]), int(my_lst[5]), int(my_lst[6]), int(my_lst[7]), int(my_lst[8]), float(my_lst[9]), float(my_lst[10]), int(my_lst[11]), int(my_lst[12]), int(my_lst[13]), int(my_lst[14]), int(my_lst[15]), my_lst[16], my_lst[17]]
         result = {"first": bool(recv_lst[2]), "my_pkmn": m_lst, "op_pkmn": o_lst}
         return result
+
+b = Pokemon("Bulbasaur")
+c = Pokemon()

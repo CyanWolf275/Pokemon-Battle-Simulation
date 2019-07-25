@@ -1,4 +1,5 @@
-import pyodbc, functions
+import pyodbc, functions, Move
+from random import shuffle
 
 class Pokemon(object):
     
@@ -41,8 +42,14 @@ class Pokemon(object):
         self.spd_mod = 1
         self.stat = "None"
         self.type = param_lst[8]
+        cursor.execute("select Move from Moves1 where EnName = '" + self.name + "'")
+        available_moves = list(cursor)[0][0].split(", ")
+        shuffle(available_moves)
+        self.move_lst = [Move(available_moves[0]), Move(available_moves[1]), Move(available_moves[2]), Move(available_moves[3])]
         cursor.close()
         db.close()
     
     def __str__(self):
         return "/".join([self.name, str(self.HP), str(self.Attack), str(self.Defense), str(self.SpAttack), str(self.SpDefence), str(self.Speed), str(self.level), str(self.critical), str(self.accuracy), str(self.evasion), str(self.atk_mod), str(self.def_mod), str(self.spatk_mod), str(self.spdef_mod), str(self.spd_mod), self.stat, self.type]) 
+
+c = Pokemon("Bulbasaur")
