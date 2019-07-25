@@ -223,6 +223,12 @@ def display_Background(screen, file_abspath):
     screen.blit(background, (0, 0))
 
     #pygame.display.update()
+    
+def draw_box(screen,x1,y1,x2,y2,name,level,hp):
+    start_button = button('box.png', x1,y1,x2,y2)
+    start_button.show_button(screen)
+    mts(screen, font, name, (0,0,255), x1 + (x2-x1)/3, y1 + (y2-y1)/3)
+    mts(screen, font, "lv " + str(level), (0,0,255),x1 + (x2-x1)/3*2 , y1 + (y2-y1)/3)
 
 
 main()
