@@ -8,11 +8,8 @@ class client(object):
     
     def connect(self):
         '''Connect to a server. Returns True if succeeded, otherwise False. '''
-        try:
-            self.s.connect(self.info)
-            return True
-        except:
-            return False
+        self.s.connect(self.info)
+
     
     def send(self, msg):
         self.s.send(msg.encode())
