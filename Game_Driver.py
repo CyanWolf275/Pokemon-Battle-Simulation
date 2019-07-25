@@ -2,6 +2,7 @@ import pygame
 import pygame.math
 import os
 import importlib
+import functions
 from pygame.locals import *
 
 
@@ -37,6 +38,7 @@ class button:
         return[self.x1,self.y1,self.x2,self.y2]
 
 def main():
+    print(functions.poke_lst())
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
     pygame.display.set_caption('home screen')
     #booleans for disabling screen functions
