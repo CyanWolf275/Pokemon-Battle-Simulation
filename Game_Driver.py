@@ -1,14 +1,19 @@
 import pygame
 import pygame.math
 import os
-import pokemon
-
 from pygame.locals import *
+
 
 SCREENSIZE_X = 1000
 SCREENSIZE_Y = 618
 CONVERSION_FACTOR = 50
 # these coordinates are bounding points
+# Giant search bar for screen 3
+# screen 3 consists of a single search button
+# jumps to external terminal
+# name becomes input 
+# search for name within pokemon pool
+# 
 class button:
     def __init__(self, image, x1, y1, x2, y2):
         self.image = image
