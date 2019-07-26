@@ -68,7 +68,7 @@ class button:
 
 def main():
     #os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
-    user_IP = '10.102.83.37'
+    user_IP = '10.102.79.104'
     user_Port = 7788
     client = tcp_client.client(user_IP, user_Port)
     client.connect()
@@ -184,7 +184,9 @@ def main():
             screen.fill((255,255,255))
             mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
             client.press_start()
-                
+            active_startgame = True
+            finished_choice = False
+        if active_startgame:
             display_Background(screen, 'asset\\image\\background.png')
             current_Pokemon = game_Pokemon(100,200, 300, 500, choice_lst[0])
             enemy_Pokemon = game_Pokemon(700, 0, 900, 200, choice_lst[0])
