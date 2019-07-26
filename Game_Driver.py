@@ -30,6 +30,8 @@ class game_Pokemon(pygame.sprite.Sprite):
         
     def show_image(self, screen):
         display_Image(screen, self.image, self.locationX, self.locationY, self.locationX2, self.locationY2)
+    def show_imageE(self, screen):
+        display_Image(screen, self.pokemon.FrontPic, self.locationX, self.locationY, self.locationX2, self.locationY2)
     def show_status(self, screen, font):
         draw_box(screen, font, 0 , 0, self.locationX2 + 100, self.locationY2 - 400, self.pokemon.name, self.pokemon.level, self.pokemon.HP, self.pokemon.totalHP)
 
@@ -87,6 +89,10 @@ def main():
     active_search = False
     active_startgame = False
     finished_choice = False
+    active_ability1 = False
+    active_ability2 = False
+    active_ability3 = False
+    active_ability4 = False
 
     screen.fill((255, 255, 255))
     pygame.font.init()
@@ -167,11 +173,13 @@ def main():
             active_Screen3 = False
             active_search = False
             active_enter = False
-            #while(not client.press_start()):
-                #screen.fill(255,255,255)
-                #mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
+            #screen.fill(255,255,255)
+            #mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
+            #client.press_start()
+                
             display_Background(screen, 'asset\\image\\background.png')
             current_Pokemon = game_Pokemon(100,200, 300, 500, choice_lst[0])
+            enemy_Pokemon = game_Pokemon(700, 0, 900, 200, choice_lst = [])
             current_Pokemon.show_image(screen)
             current_Pokemon.show_status(screen, font)
             ability1 = button(current_Pokemon.pokemon.move_lst[0].name, 20, 440, 120, 450)
@@ -182,8 +190,28 @@ def main():
             ability2.show_text(screen, font)
             ability3.show_text(screen, font)
             ability4.show_text(screen, font)
+            ab1lst = ability1.coordinates()
+            ab2lst = ability2.coordinates()
+            ab3lst = ability3.coordinates()
+            ab4lst = ability4.coordinates()
+
+            if(active_ability1):
+                received_dict = client.battle(current_Pokemon.pokemon, current_Pokemon.pokemon.move_lst[0])
+                change(current_Pokemon.pokemon, received_dict['my_pkmn'])
+                change(enemy_Pokemon.pokemon, received_dict['op_pkmn'])
+            elif(active_ability2):
+                received_dict = client.battle(current_Pokemon.pokemon, current_Pokemon.pokemon.move_lst[1])
+                change(current_Pokemon.pokemon, received_dict['my_pkmn'])
+                change(enemy_Pokemon.pokemon, received_dict['op_pkmn'])
+            elif(active_ability3):
+                received_dict = client.battle(current_Pokemon.pokemon, current_Pokemon.pokemon.move_lst[2])
+                change(current_Pokemon.pokemon, received_dict['my_pkmn'])
+                change(enemy_Pokemon.pokemon, received_dict['op_pkmn'])
+            elif(active_ability4):
+                received_dict = client.battle(current_Pokemon.pokemon, current_Pokemon.pokemon.move_lst[3])
+                change(current_Pokemon.pokemon, received_dict['my_pkmn'])
+                change(enemy_Pokemon.pokemon, received_dict['op_pkmn'])
             
-            #client.press_start()
 
             #client.battle(pokemon, move) references
             # received_dict = client.battle(pokemon, move)
@@ -217,6 +245,15 @@ def main():
                     active_Screen3 = True
                 if check_Bounds(srchLst) and active_Screen3:
                     active_search = True
+                if check_Bounds(ab1lst) and active_Screen4:
+                    active_ability1 = True
+                elif check_Bounds(ab2lst) and active_Screen4:
+                    active_ability2 = True
+                elif check_Bounds(ab3lst) and active_Screen4:
+                    active_ability3 = True
+                elif check_Bounds(ab4lst) and active_Screen4:
+                    active_ability4 = True
+                
             
                 
                     
@@ -292,5 +329,27 @@ def draw_box(screen, font,x1,y1,x2,y2,name,level,hp, total_hp):
     pygame.draw.rect(screen, [0,0,0], hp_outline, 2)
     pygame.draw.rect(screen, [255, 0, 0], hp_box)
 
+
+def change(pokemon, ls):
+    pokemon.name = ls[0]
+    pokemon.HP = ls[1]
+    pokemon.Attack = ls[2]
+    pokemon.Defense = ls[3]
+    pokemon.SpAttack = ls[4]
+    pokemon.SpDefense = ls[5]
+    pokemon.Speed = ls[6]
+    pokemon.level = ls[7]
+    pokemon.critical = ls[8]
+    pokemon.accuracy = ls[9]
+    pokemon.evasion = ls[10]
+    pokemon.atk_mod = ls[11]
+    pokemon.def_mod = ls[12]
+    pokemon.spatk_mod = ls[13]
+    pokemon.spdef_mod = ls[14]
+    pokemon.spd_mod = ls[15]
+    pokemon.stat = ls[16]
+    pokemon.type = ls[17]
+    pokemon.acc_mod = ls[18]
+    pokemon.eva_mod = ls[19]
 
 main()
