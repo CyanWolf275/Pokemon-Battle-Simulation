@@ -18,6 +18,20 @@ BACKPACK_SIZE = 6
 # name becomes input 
 # search for name within pokemon pool
 # 
+
+class game_Pokemon(pygame.sprite.Sprite):
+    def __init__(self, x, y, x2, y2, Pokemon):
+        self.locationX = x
+        self.locationY = y
+        self.locationX2 = x2
+        self.locationY2 = y2
+        self.image = Pokemon.BackPIc
+        self.pokemon = Pokemon
+        
+    def show_image(self, screen):
+        display_Image(screen, self.image, self.locationX, self.locationY, self.locationX2, self.locationY2)
+    def show_status(self, screen, font):
+        draw_box(screen, font, 0 , 0, self.locationX2 + 100, self.locationY2 - 400, self.pokemon.name, self.pokemon.level, self.pokemon.HP, self.pokemon.totalHP)
 class button:
     def __init__(self, image, x1, y1, x2, y2):
         self.image = image
@@ -41,6 +55,10 @@ class button:
 
 def main():
     #os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
+    #user_IP = 'jdakdaka'
+    #user_Port = 12345678
+    #client = tcp_client.client(user_IP, user_Port)
+    #client.connect()
     pokemon_lst = functions.poke_lst()
     choice_lst = []
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
@@ -62,6 +80,8 @@ def main():
     finished_choice = False
 
     screen.fill((255, 255, 255))
+    pygame.font.init()
+    font = pygame.font.SysFont("arial", 24)
     user_choice = ''
     running = True
     display_Homescreen(screen)
@@ -98,8 +118,7 @@ def main():
             server_button.show_button(screen)
             client_button.show_button(screen)
             enter_button.show_button(screen)
-            pygame.font.init()
-            font = pygame.font.SysFont("arial", 24)
+           
             mts(screen, font, "Ash", (0, 0, 0), 625, 320)
             mts(screen, font, "Serena", (0, 0, 0), 765, 320)
             mts(screen, font, "Please choose your character", (0,0,0), slst[0] - 400, slst[1])
@@ -108,10 +127,6 @@ def main():
         if active_server == True:
             display_Image(screen, 'asset\\image\\art.jpg',slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
             active_server = False
-            user_ip = input1(screen, font)
-            user_port = input1(screen, font)
-            client = tcp_client.client(user_ip, int(user_port))
-            
         elif active_client == True:
             display_Image(screen, 'asset\\image\\art.jpg',clst[0] - 10, clst[3] + 10, clst[2] - 10, clst[3] + 50)
             active_client = False
@@ -141,11 +156,19 @@ def main():
             active_Screen3 = False
             active_search = False
             active_enter = False
+            #while(not client.press_start()):
+                #screen.fill(255,255,255)
+                #mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
             display_Background(screen, 'asset\\image\\background.png')
-            mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
+            current_Pokemon = game_Pokemon(100,200, 300, 500, choice_lst[0])
+            current_Pokemon.show_image(screen)
+            current_Pokemon.show_status(screen, font)
             
             #client.press_start()
-            
+
+            #client.battle(pokemon, move) references
+            # received_dict = client.battle(pokemon, move)
+            # one boolean in dict will control attack order
 
 
                 
@@ -240,11 +263,15 @@ def display_Background(screen, file_abspath):
 
     #pygame.display.update()
     
-def draw_box(screen, font,x1,y1,x2,y2,name,level,hp):
-    start_button = button('box.png', x1,y1,x2,y2)
-    start_button.show_button(screen)
-    mts(screen, font, name, (0,0,255), x1 + (x2-x1)/3, y1 + (y2-y1)/3)
-    mts(screen, font, "lv " + str(level), (0,0,255),x1 + (x2-x1)/3*2 , y1 + (y2-y1)/3)
+def draw_box(screen, font,x1,y1,x2,y2,name,level,hp, total_hp):
+    display_Image(screen, 'asset\\image\\box.png', x1,y1,x2,y2)
+    mts(screen, font, name, (0,0,255), x1 + (x2-x1)//3, y1 + (y2-y1)//3)
+    mts(screen, font, "lv " + str(level), (0,0,255),x1 + (x2-x1)//3*2 , y1 + (y2-y1)//3)
+    mts(screen, font, "HP: " + str(hp) + "/" + str(total_hp), (0,0,255), x1 + 5, y2 - 50)
+    hp_outline = pygame.Rect(x1 + (x2-x1)//3, y1 + (y2 - y1)//3 * 2, int((x2 - x1)//3) + 50, y1 + (y2 - y1)//3 - 5)
+    hp_box = pygame.Rect(x1 + (x2-x1)//3, y1 + (y2 - y1)//3 * 2, int(((x2 - x1)//3 + 50) * hp/total_hp), y1 + (y2 - y1)//3 - 5)
+    pygame.draw.rect(screen, [0,0,0], hp_outline, 2)
+    pygame.draw.rect(screen, [255, 0, 0], hp_box)
 
 
 main()

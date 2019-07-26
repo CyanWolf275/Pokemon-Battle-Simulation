@@ -19,6 +19,7 @@ class Pokemon(object):
     #ability
     #client -> server: 0name, 1hp, 2atk, 3def, 4spatk, 5spdef, 6spd, 7lv, 8crt, 9acc, 10eva, 11matk, 12mdef, 13mspatk, 14mspdef, 15mspd, 16stat, 17type, 18macc, 19meva
     #0name, 1prop, 2cat, 3acc, 4pp, 5pwr, 6myc, 7opc
+
     def __init__(self, name):
         db = pyodbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'r'DBQ=./BaseStatus.accdb;')
         cursor = db.cursor()
@@ -27,6 +28,7 @@ class Pokemon(object):
         self.name = name
         self.level = 50
         self.HP = functions.hp(param_lst[2], 85, self.level)
+        self.totalHP = self.HP
         self.Attack = functions.other_state(param_lst[3], 85, self.level, 1)
         self.Defense = functions.other_state(param_lst[4], 85, self.level, 1)
         self.SpAttack = functions.other_state(param_lst[5], 85, self.level, 1)
