@@ -6,7 +6,7 @@ def hp(base,ev,level):
     return int(hp)
 
 def other_state(base,ev,level,nature):
-    other_state = ((2 * base + 31 + ev/4 * level)/100 + 5) * nature
+    other_state = (((2 * base + 31 + ev/4) * level)/100 + 5) * nature
     return int(other_state)
 
 def damage(level,power,attack,defense,modifier):
