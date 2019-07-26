@@ -32,6 +32,7 @@ class game_Pokemon(pygame.sprite.Sprite):
         display_Image(screen, self.image, self.locationX, self.locationY, self.locationX2, self.locationY2)
     def show_status(self, screen, font):
         draw_box(screen, font, 0 , 0, self.locationX2 + 100, self.locationY2 - 400, self.pokemon.name, self.pokemon.level, self.pokemon.HP, self.pokemon.totalHP)
+
 class button:
     def __init__(self, image, x1, y1, x2, y2):
         self.image = image
@@ -39,9 +40,16 @@ class button:
         self.x2 = x2
         self.y1 = y1
         self.y2 = y2
+    
     def show_button(self, screen):
         new_image = pygame.transform.scale(pygame.image.load(self.image), (abs(self.x2 - self.x1), abs(self.y2 - self.y1)))
         screen.blit(new_image, (self.x1, self.y1))
+        pygame.display.update()
+    
+    def show_text(self, screen, font):
+        new_text = self.image
+        text = font.render(self.image, True, [0,0,0])
+        screen.blit(text, [(self.x1 + self.x2)//2, (self.y1 + self.y2)//2])
         pygame.display.update()
     '''
     def interaction(self, screen):
@@ -52,6 +60,7 @@ class button:
     '''
     def coordinates(self):
         return[self.x1,self.y1,self.x2,self.y2]
+
 
 def main():
     #os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
@@ -107,6 +116,7 @@ def main():
     sglst = startgame_button.coordinates()
     display_Image(screen, 'asset\\image\\Pokemon\\Pikachu.png', 0, 100, 400, 500)
     display_Image(screen, 'asset\\image\\Pokemon\\Charmander.png', 600, 100, 1000, 500)
+    
     while running:
 
         #Creation of homescreen and a couple buttons
@@ -153,6 +163,7 @@ def main():
                         active_forloop = False
 
         if finished_choice == True:
+        
             active_Screen3 = False
             active_search = False
             active_enter = False
@@ -163,6 +174,14 @@ def main():
             current_Pokemon = game_Pokemon(100,200, 300, 500, choice_lst[0])
             current_Pokemon.show_image(screen)
             current_Pokemon.show_status(screen, font)
+            ability1 = button(current_Pokemon.pokemon.move_lst[0].name, 20, 440, 120, 450)
+            ability2 = button(current_Pokemon.pokemon.move_lst[1].name, 20, 480, 120, 490)
+            ability3 = button(current_Pokemon.pokemon.move_lst[2].name, 200, 440, 300, 450)
+            ability4 = button(current_Pokemon.pokemon.move_lst[3].name, 200, 480, 300, 490)
+            ability1.show_text(screen, font)
+            ability2.show_text(screen, font)
+            ability3.show_text(screen, font)
+            ability4.show_text(screen, font)
             
             #client.press_start()
 
