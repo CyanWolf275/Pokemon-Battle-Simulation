@@ -100,6 +100,8 @@ def main():
     user_choice = ''
     running = True
     display_Homescreen(screen)
+    current_Pokemon = None
+    enemy_Pokemon = None
     #start_button = button('C:\\Users\\jeffr\\OneDrive\\Desktop\\VS2020\\BattleSimulation\\Pokemon-Battle-Simulation\\asset\\image\\start.png', 700, 490, 900, 615)
     start_button = button('asset\\image\\start.png', 700, 490, 900, 615)
     start_button.show_button(screen)
@@ -122,6 +124,10 @@ def main():
     sglst = startgame_button.coordinates()
     display_Image(screen, 'asset\\image\\Pokemon\\Pikachu.png', 0, 100, 400, 500)
     display_Image(screen, 'asset\\image\\Pokemon\\Charmander.png', 600, 100, 1000, 500)
+    ab1lst = []
+    ab2lst = []
+    ab3lst = []
+    ab4lst = []
     
     while running:
 
@@ -173,7 +179,7 @@ def main():
             active_Screen3 = False
             active_search = False
             active_enter = False
-            screen.fill(255,255,255)
+            screen.fill((255,255,255))
             mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
             client.press_start()
                 
@@ -247,14 +253,15 @@ def main():
                     active_Screen3 = True
                 if check_Bounds(srchLst) and active_Screen3:
                     active_search = True
-                if check_Bounds(ab1lst) and active_Screen4:
-                    active_ability1 = True
-                elif check_Bounds(ab2lst) and active_Screen4:
-                    active_ability2 = True
-                elif check_Bounds(ab3lst) and active_Screen4:
-                    active_ability3 = True
-                elif check_Bounds(ab4lst) and active_Screen4:
-                    active_ability4 = True
+                if finished_choice:
+                    if check_Bounds(ab1lst) and active_Screen4:
+                        active_ability1 = True
+                    elif check_Bounds(ab2lst) and active_Screen4:
+                        active_ability2 = True
+                    elif check_Bounds(ab3lst) and active_Screen4:
+                        active_ability3 = True
+                    elif check_Bounds(ab4lst) and active_Screen4:
+                        active_ability4 = True
                 
             
                 
