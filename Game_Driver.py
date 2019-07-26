@@ -34,6 +34,8 @@ class game_Pokemon(pygame.sprite.Sprite):
         display_Image(screen, self.pokemon.FrontPic, self.locationX, self.locationY, self.locationX2, self.locationY2)
     def show_status(self, screen, font):
         draw_box(screen, font, 0 , 0, self.locationX2 + 100, self.locationY2 - 400, self.pokemon.name, self.pokemon.level, self.pokemon.HP, self.pokemon.totalHP)
+    def show_statusE(self, screen, font):
+        draw_box(screen, font, self.locationX, self.locationY + 200, SCREENSIZE_X, self.locationY2 + 200, self.pokemon.name, self.pokemon.level, self.pokemon.HP, self.pokemon.totalHP)
 
 class button:
     def __init__(self, image, x1, y1, x2, y2):
@@ -219,7 +221,7 @@ def main():
                 change(enemy_Pokemon.pokemon, received_dict['op_pkmn'])
 
             enemy_Pokemon.show_image(screen)
-            enemy_Pokemon.show_status(screen, font)
+            enemy_Pokemon.show_statusE(screen, font)
 
             #client.battle(pokemon, move) references
             # received_dict = client.battle(pokemon, move)
