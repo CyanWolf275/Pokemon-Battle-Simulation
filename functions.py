@@ -122,3 +122,25 @@ def poke_lst():
     cursor.close()
     db.close()
     return result
+
+def change(pokemon,ls):
+    pokemon.name = ls[0]
+    pokemon.HP = ls[1]
+    pokemon.Attack = ls[2]
+    pokemon.Defense = ls[3]
+    pokemon.SpAttack = ls[4]
+    pokemon.SpDefense = ls[5]
+    pokemon.Speed = ls[6]
+    pokemon.level = ls[7]
+    pokemon.critical = ls[8]
+    pokemon.accuracy = ls[9]
+    pokemon.evasion = ls[10]
+    pokemon.atk_mod = ls[11]
+    pokemon.def_mod = ls[12]
+    pokemon.spatk_mod = ls[13]
+    pokemon.spdef_mod = ls[14]
+    pokemon.spd_mod = ls[15]
+    pokemon.stat = ls[16]
+    pokemon.type = ls[17]
+    pokemon.acc_mod = ls[18]
+    pokemon.eva_mod = ls[19]
