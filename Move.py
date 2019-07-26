@@ -17,15 +17,6 @@ class Move(object):
         cursor.close()
         db.close()
     
-    def atk(self, pkmn):
-        self.pp -= 1
-        if self.cat == "Physical":
-            return pkmn.Attack
-        elif self.cat == "Special":
-            return pkmn.SpAttack
-        else:
-            return 0
-    
     def __str__(self):
         '''0name, 1prop, 2cat, 3acc, 4pp, 5pwr, 6myc, 7opc'''
         return "/".join([self.name, self.prop, self.cat, str(self.acc), str(self.pp), str(self.pwr), "", ""])
