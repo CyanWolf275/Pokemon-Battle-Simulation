@@ -17,7 +17,7 @@ class Pokemon(object):
     #level
     #critical
     #ability
-    #client -> server: 0name, 1hp, 2atk, 3def, 4spatk, 5spdef, 6spd, 7lv, 8crt, 9acc, 10eva, 11matk, 12mdef, 13mspatk, 14mspdef, 15mspd, 16stat, 17type, 18macc, 19meva
+    #client -> server: 0name, 1hp, 2atk, 3def, 4spatk, 5spdef, 6spd, 7lv, 8crt, 9acc, 10eva, 11matk, 12mdef, 13mspatk, 14mspdef, 15mspd, 16stat, 17type, 18macc, 19meva， 20FrontPic
     #0name, 1prop, 2cat, 3acc, 4pp, 5pwr, 6myc, 7opc
 
     def __init__(self, name):
@@ -56,4 +56,4 @@ class Pokemon(object):
         db.close()
     
     def __str__(self):
-        return "/".join([self.name, str(self.HP), str(self.Attack), str(self.Defense), str(self.SpAttack), str(self.SpDefence), str(self.Speed), str(self.level), str(self.critical), str(self.accuracy), str(self.evasion), str(self.atk_mod), str(self.def_mod), str(self.spatk_mod), str(self.spdef_mod), str(self.spd_mod), self.stat, self.type, str(self.acc_mod), str(self.eva_mod)])
+        return "/".join([self.name, str(self.HP), str(self.Attack), str(self.Defense), str(self.SpAttack), str(self.SpDefence), str(self.Speed), str(self.level), str(self.critical), str(self.accuracy), str(self.evasion), str(self.atk_mod), str(self.def_mod), str(self.spatk_mod), str(self.spdef_mod), str(self.spd_mod), self.stat, self.type, str(self.acc_mod), str(self.eva_mod), self.FrontPic])
