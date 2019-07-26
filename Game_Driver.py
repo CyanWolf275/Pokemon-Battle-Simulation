@@ -66,10 +66,10 @@ class button:
 
 def main():
     #os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
-    #user_IP = 'jdakdaka'
-    #user_Port = 12345678
-    #client = tcp_client.client(user_IP, user_Port)
-    #client.connect()
+    user_IP = '10.102.83.37'
+    user_Port = 7788
+    client = tcp_client.client(user_IP, user_Port)
+    client.connect()
     pokemon_lst = functions.poke_lst()
     choice_lst = []
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
@@ -173,13 +173,13 @@ def main():
             active_Screen3 = False
             active_search = False
             active_enter = False
-            #screen.fill(255,255,255)
-            #mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
-            #client.press_start()
+            screen.fill(255,255,255)
+            mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
+            client.press_start()
                 
             display_Background(screen, 'asset\\image\\background.png')
             current_Pokemon = game_Pokemon(100,200, 300, 500, choice_lst[0])
-            enemy_Pokemon = game_Pokemon(700, 0, 900, 200, choice_lst = [])
+            enemy_Pokemon = game_Pokemon(700, 0, 900, 200, choice_lst[0])
             current_Pokemon.show_image(screen)
             current_Pokemon.show_status(screen, font)
             ability1 = button(current_Pokemon.pokemon.move_lst[0].name, 20, 440, 120, 450)
@@ -211,7 +211,9 @@ def main():
                 received_dict = client.battle(current_Pokemon.pokemon, current_Pokemon.pokemon.move_lst[3])
                 change(current_Pokemon.pokemon, received_dict['my_pkmn'])
                 change(enemy_Pokemon.pokemon, received_dict['op_pkmn'])
-            
+
+            enemy_Pokemon.show_image(screen)
+            enemy_Pokemon.show_status(screen, font)
 
             #client.battle(pokemon, move) references
             # received_dict = client.battle(pokemon, move)
@@ -332,6 +334,7 @@ def draw_box(screen, font,x1,y1,x2,y2,name,level,hp, total_hp):
 
 def change(pokemon, ls):
     pokemon.name = ls[0]
+    pokemon.FrontPic = ls[20]
     pokemon.HP = ls[1]
     pokemon.Attack = ls[2]
     pokemon.Defense = ls[3]
