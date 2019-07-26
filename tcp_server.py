@@ -128,8 +128,10 @@ class server(object):
                     dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
-        pkmn2[1] -= dmg1.dmg
-        pkmn1[1] -= dmg2.dmg
+        if random() < float(mv1[3]):
+            pkmn2[1] -= dmg1.dmg
+        if random() < float(mv2[3]):
+            pkmn1[1] -= dmg2.dmg
         self.conn1.send(("/".join(pkmn2) + ", " + "/".join(pkmn1) + ", " + str(one_first)).encode())
         self.conn2.send(("/".join(pkmn1) + ", " + "/".join(pkmn2) + ", " + str(not one_first)).encode())
         self.recv1 = ""
