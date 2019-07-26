@@ -52,73 +52,94 @@ class server(object):
             one_first = True
             if mv1[2] == "Physical":
                 if mv2[2] == "Physical":
-                    dmg1 = functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[2]), int(pkmn1[11])), functions.stage(int(pkmn2[3]), int(pkmn2[12])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False))
+                    dmg1 = damage(functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[2]), int(pkmn1[11])), functions.stage(int(pkmn2[3]), int(pkmn2[12])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False)))
+                    dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
-                    dmg2 = functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[2]), int(pkmn2[11])), functions.stage(int(pkmn1[3]), int(pkmn1[12])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False))
+                    dmg2 = damage(functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[2]), int(pkmn2[11])), functions.stage(int(pkmn1[3]), int(pkmn1[12])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False)))
+                    dmg = dmg2
                     exec(mv2[6])
                     exec(mv2[7])
                 else:
-                    dmg1 = functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[2]), int(pkmn1[11])), functions.stage(int(pkmn2[3]), int(pkmn2[12])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False))
+                    dmg1 = damage(functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[2]), int(pkmn1[11])), functions.stage(int(pkmn2[3]), int(pkmn2[12])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False)))
+                    dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
-                    dmg2 = functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[4]), int(pkmn2[13])), functions.stage(int(pkmn1[5]), int(pkmn1[14])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False))
+                    dmg2 = damage(functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[4]), int(pkmn2[13])), functions.stage(int(pkmn1[5]), int(pkmn1[14])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False)))
+                    dmg = dmg2
                     exec(mv2[6])
                     exec(mv2[7])
             else:
                 if mv2[2] == "Physical":
-                    dmg1 = functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[4]), int(pkmn1[13])), functions.stage(int(pkmn2[5]), int(pkmn2[14])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False))
+                    dmg1 = damage(functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[4]), int(pkmn1[13])), functions.stage(int(pkmn2[5]), int(pkmn2[14])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False)))
+                    dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
-                    dmg2 = functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[2]), int(pkmn2[11])), functions.stage(int(pkmn1[3]), int(pkmn1[12])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False))
+                    dmg2 = damage(functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[2]), int(pkmn2[11])), functions.stage(int(pkmn1[3]), int(pkmn1[12])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False)))
+                    dmg = dmg2
                     exec(mv2[6])
                     exec(mv2[7])
                 else:
-                    dmg1 = functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[4]), int(pkmn1[13])), functions.stage(int(pkmn2[5]), int(pkmn2[14])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False))
+                    dmg1 = damage(functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[4]), int(pkmn1[13])), functions.stage(int(pkmn2[5]), int(pkmn2[14])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False)))
+                    dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
-                    dmg2 = functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[4]), int(pkmn2[13])), functions.stage(int(pkmn1[5]), int(pkmn1[14])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False))
+                    dmg2 = damage(functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[4]), int(pkmn2[13])), functions.stage(int(pkmn1[5]), int(pkmn1[14])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False)))
+                    dmg = dmg2
                     exec(mv2[6])
                     exec(mv2[7])
         else:
             one_first = False
             if mv2[2] == "Physical":
                 if mv1[2] == "Physical":
-                    dmg2 = functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[2]), int(pkmn2[11])), functions.stage(int(pkmn1[3]), int(pkmn1[12])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False))
+                    dmg2 = damage(functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[2]), int(pkmn2[11])), functions.stage(int(pkmn1[3]), int(pkmn1[12])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False)))
+                    dmg = dmg2
                     exec(mv2[6])
                     exec(mv2[7])
-                    dmg1 = functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[2]), int(pkmn1[11])), functions.stage(int(pkmn2[3]), int(pkmn2[12])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False))
+                    dmg1 = damage(functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[2]), int(pkmn1[11])), functions.stage(int(pkmn2[3]), int(pkmn2[12])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False)))
+                    dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
                 else:
-                    dmg2 = functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[2]), int(pkmn2[11])), functions.stage(int(pkmn1[3]), int(pkmn1[12])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False))
+                    dmg2 = damage(functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[2]), int(pkmn2[11])), functions.stage(int(pkmn1[3]), int(pkmn1[12])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False)))
+                    dmg = dmg2
                     exec(mv2[6])
                     exec(mv2[7])
-                    dmg1 = functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[4]), int(pkmn1[13])), functions.stage(int(pkmn2[5]), int(pkmn2[14])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False))
+                    dmg1 = damage(functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[4]), int(pkmn1[13])), functions.stage(int(pkmn2[5]), int(pkmn2[14])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False)))
+                    dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
             else:
                 if mv1[2] == "Physical":
-                    dmg2 = functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[4]), int(pkmn2[13])), functions.stage(int(pkmn1[5]), int(pkmn1[14])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False))
+                    dmg2 = damage(functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[4]), int(pkmn2[13])), functions.stage(int(pkmn1[5]), int(pkmn1[14])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False)))
+                    dmg = dmg2
                     exec(mv2[6])
                     exec(mv2[7])
-                    dmg1 = functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[2]), int(pkmn1[11])), functions.stage(int(pkmn2[3]), int(pkmn2[12])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False))
+                    dmg1 = damage(functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[2]), int(pkmn1[11])), functions.stage(int(pkmn2[3]), int(pkmn2[12])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False)))
+                    dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
                 else:
-                    dmg2 = functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[4]), int(pkmn2[13])), functions.stage(int(pkmn1[5]), int(pkmn1[14])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False))
+                    dmg2 = damage(functions.damage(int(pkmn2[7]), int(mv2[5]), functions.stage(int(pkmn2[4]), int(pkmn2[13])), functions.stage(int(pkmn1[5]), int(pkmn1[14])), functions.modifier("", "", int(pkmn2[8]), pkmn2[17], mv2[1], False, pkmn1[17], False)))
+                    dmg = dmg2
                     exec(mv2[6])
                     exec(mv2[7])
-                    dmg1 = functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[4]), int(pkmn1[13])), functions.stage(int(pkmn2[5]), int(pkmn2[14])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False))
+                    dmg1 = damage(functions.damage(int(pkmn1[7]), int(mv1[5]), functions.stage(int(pkmn1[4]), int(pkmn1[13])), functions.stage(int(pkmn2[5]), int(pkmn2[14])), functions.modifier("", "", int(pkmn1[8]), pkmn1[17], mv1[1], False, pkmn2[17], False)))
+                    dmg = dmg1
                     exec(mv1[6])
                     exec(mv1[7])
-        pkmn2[1] -= dmg1
-        pkmn1[1] -= dmg2
+        pkmn2[1] -= dmg1.dmg
+        pkmn1[1] -= dmg2.dmg
         self.conn1.send(("/".join(pkmn2) + ", " + "/".join(pkmn1) + ", " + str(one_first)).encode())
         self.conn2.send(("/".join(pkmn1) + ", " + "/".join(pkmn2) + ", " + str(not one_first)).encode())
         self.recv1 = ""
         self.recv2 = ""
-    
+
+class damage(object):
+
+    def __init__(self, dmg):
+        self.dmg = dmg
+
 def main():
     s = server("", 7788)
     client = s.connect()
