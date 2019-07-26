@@ -22,7 +22,7 @@ class client(object):
         return self.receive()
     
     def battle(self, pkmn, move):
-        send(", ".join([str(pkmn), str(move)]))
+        self.send(", ".join([str(pkmn), str(move)]))
         recv_lst = self.receive().split(", ")
         op_lst = recv_lst[0].split("/")
         my_lst = recv_lst[1].split("/")
