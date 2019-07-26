@@ -35,6 +35,6 @@ class client(object):
 if __name__ == "__main__":
     b = Pokemon.Pokemon("Bulbasaur")
     c = Pokemon.Pokemon("Charmander")
-    cl = client("", 1000)
+    cl = client("192.168.1.1", 1000)
     cl.battle(b, b.move_lst[0])
     cl.battle(c, c.move_lst[0])

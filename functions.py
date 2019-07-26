@@ -21,7 +21,7 @@ def modifier(weather,Type,critical_hit,p_type,m_type,adaptability,o_type,burn):
     #type_effectiveness: int
     
     
-    weather_num = weather(weather,Type)
+    weather_num = 1
     critical_num = critical_hit(critical_hit)
     random_num = random.randint(85,100)/100
     stab_num = STAB(p_type,m_type,adaptability)

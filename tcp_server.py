@@ -20,12 +20,12 @@ class server(object):
 
     def receive1(self):
         while True:
-            self.recv1 = self.conn1.recv(1024).decode()
+            self.recv1 = self.conn1.recv(8192).decode()
             print("received " + self.recv1)
     
     def receive2(self):
         while True:
-            self.recv2 = self.conn2.recv(1024).decode()
+            self.recv2 = self.conn2.recv(8192).decode()
             print("received " + self.recv2)
     
     def press_start(self):
