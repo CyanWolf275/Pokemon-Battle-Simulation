@@ -50,6 +50,7 @@ def main():
     active_Screen2 = False
     active_Screen3 = False
     active_Screen4 = False
+    active_forloop = True
     #booleans for button functions
     active_start = False
     active_help = False
@@ -107,8 +108,8 @@ def main():
         if active_server == True:
             display_Image(screen, 'asset\\image\\art.jpg',slst[0] - 10, slst[3] + 10, slst[2] + 10, slst[3] + 50)
             active_server = False
-            user_ip = input(screen, font)
-            user_port = input(screen, font)
+            user_ip = input1(screen, font)
+            user_port = input1(screen, font)
             client = tcp_client.client(user_ip, int(user_port))
             
         elif active_client == True:
@@ -121,18 +122,31 @@ def main():
             startgame_button.show_button(screen)
             active_Screen2 == False
         if active_search == True:
+            count = 0
             mts(screen, font, "BACKPACK", (0, 0, 255), 800, 50)
-            for x in range(BACKPACK_SIZE):
-                user_choice = input(screen, font)
-                while(not check_lst(user_choice, pokemon_lst)):
-                    print("Please enter a valid pokemon")
-                    user_choice = input(screen, font)
-                if(check_lst(user_choice, pokemon_lst)):
+            if active_forloop:
+                for x in range(BACKPACK_SIZE):
+                    user_choice = input1(screen, font)
+                    while(not check_lst(user_choice, pokemon_lst)):
+                        print("Please enter a valid pokemon")
+                        user_choice = input1(screen, font)
+                
                     choice_lst.append(Pokemon.Pokemon(user_choice))
                     mts(screen, font, user_choice, (0, 0, 0), 800, (x + 2) * CONVERSION_FACTOR)
-            finished_choice = True
-        if active_startgame:
-            pass
+                    if(len(choice_lst) == BACKPACK_SIZE):
+                        finished_choice = True
+                        active_forloop = False
+
+        if finished_choice == True:
+            active_Screen3 = False
+            active_search = False
+            active_enter = False
+            display_Background(screen, 'asset\\image\\background.png')
+            mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
+            
+            #client.press_start()
+            
+
 
                 
             
@@ -161,9 +175,7 @@ def main():
                     active_Screen3 = True
                 if check_Bounds(srchLst) and active_Screen3:
                     active_search = True
-                if check_Bounds(sglst) and active_Screen3 and finished_choice:
-                    active_startgame = True
-                    active_Screen4 = True
+            
                 
                     
                 
@@ -172,7 +184,7 @@ def main():
 
 def check_lst(name, lst):
     return name in lst
-def input(screen, font, name = ''):
+def input1(screen, font, name = ''):
     while True:
         for evt in pygame.event.get():
             if evt.type == KEYDOWN:
@@ -181,8 +193,11 @@ def input(screen, font, name = ''):
                 elif evt.key == K_BACKSPACE:
                     name = name[:-1]
                 elif evt.key == K_RETURN:
-                    return name
                     name = ""
+                elif evt.key == K_SPACE:
+                    return name
+            if evt.type == MOUSEBUTTONDOWN:
+                break
             elif evt.type == QUIT:
                 break
         display_Image(screen, 'asset\\image\\textbox.png', 250, 518, 800, 618)
@@ -191,6 +206,7 @@ def input(screen, font, name = ''):
         rect.center = (550, 568)
         screen.blit(block, rect)
         pygame.display.flip()
+        
     
     
 
@@ -224,7 +240,7 @@ def display_Background(screen, file_abspath):
 
     #pygame.display.update()
     
-def draw_box(screen,x1,y1,x2,y2,name,level,hp):
+def draw_box(screen, font,x1,y1,x2,y2,name,level,hp):
     start_button = button('box.png', x1,y1,x2,y2)
     start_button.show_button(screen)
     mts(screen, font, name, (0,0,255), x1 + (x2-x1)/3, y1 + (y2-y1)/3)
