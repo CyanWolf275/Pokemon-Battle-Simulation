@@ -10,7 +10,7 @@ from pygame.locals import *
 SCREENSIZE_X = 1000
 SCREENSIZE_Y = 618
 CONVERSION_FACTOR = 50
-BACKPACK_SIZE = 1
+BACKPACK_SIZE = 6
 # these coordinates are bounding points
 # Giant search bar for screen 3
 # screen 3 consists of a single search button
@@ -259,15 +259,15 @@ def main():
                     active_Screen3 = True
                 if check_Bounds(srchLst) and active_Screen3:
                     active_search = True
-                
-                if check_Bounds(ab1lst) and active_Screen4:
-                    active_ability1 = True
-                elif check_Bounds(ab2lst) and active_Screen4:
-                    active_ability2 = True
-                elif check_Bounds(ab3lst) and active_Screen4:
-                    active_ability3 = True
-                elif check_Bounds(ab4lst) and active_Screen4:
-                    active_ability4 = True
+                if finished_choice:
+                    if check_Bounds(ab1lst) and active_Screen4:
+                        active_ability1 = True
+                    elif check_Bounds(ab2lst) and active_Screen4:
+                        active_ability2 = True
+                    elif check_Bounds(ab3lst) and active_Screen4:
+                        active_ability3 = True
+                    elif check_Bounds(ab4lst) and active_Screen4:
+                        active_ability4 = True
             
             
                 
