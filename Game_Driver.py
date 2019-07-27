@@ -224,7 +224,7 @@ def main():
                 change(current_Pokemon.pokemon, received_dict['my_pkmn'])
                 change(enemy_Pokemon.pokemon, received_dict['op_pkmn'])
             
-            enemy_Pokemon.show_image(screen)
+            enemy_Pokemon.show_imageE(screen)
             enemy_Pokemon.show_statusE(screen, font)
         
             #client.battle(pokemon, move) references
