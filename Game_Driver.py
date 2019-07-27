@@ -91,7 +91,7 @@ def main():
     active_client = False
     active_enter = False
     active_search = False
-    active_startgame = False
+    active_startgame = True
     finished_choice = False
     active_ability1 = False
     active_ability2 = False
@@ -179,15 +179,14 @@ def main():
                         active_forloop = False
 
         if finished_choice == True:
-        
             active_Screen3 = False
             active_search = False
             active_enter = False
             screen.fill((255,255,255))
             mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
-            client.press_start()
-            
-            
+            if finished_choice and active_startgame:
+                client.press_start()
+                active_startgame = False
         
             display_Background(screen, 'asset\\image\\background.png')
             current_Pokemon = game_Pokemon(100,150, 400, 500, choice_lst[0])
