@@ -10,13 +10,14 @@ from pygame.locals import *
 SCREENSIZE_X = 1000
 SCREENSIZE_Y = 618
 CONVERSION_FACTOR = 50
-BACKPACK_SIZE = 6
+BACKPACK_SIZE = 1
 # these coordinates are bounding points
 # Giant search bar for screen 3
 # screen 3 consists of a single search button
 # jumps to external terminal
 # name becomes input 
 # search for name within pokemon pool
+# 
 
 class game_Pokemon(pygame.sprite.Sprite):
     def __init__(self, x, y, x2, y2, Pokemon):
@@ -67,10 +68,12 @@ class button:
 
 def main():
     #os.chdir(r'C:\Users\jeffr\OneDrive\Desktop\VS2020\BattleSimulation\Pokemon-Battle-Simulation')
+    
     user_IP = '10.102.79.104'
     user_Port = 7788
     client = tcp_client.client(user_IP, user_Port)
     client.connect()
+    
     pokemon_lst = functions.poke_lst()
     choice_lst = []
     screen = pygame.display.set_mode((SCREENSIZE_X, SCREENSIZE_Y))
@@ -183,11 +186,11 @@ def main():
             screen.fill((255,255,255))
             mts(screen, font, "Waiting for server to respond", (0,0,0), SCREENSIZE_X//2, 100)
             client.press_start()
-            active_startgame = True
-            finished_choice = False
-        if active_startgame:
+            
+            
+        
             display_Background(screen, 'asset\\image\\background.png')
-            current_Pokemon = game_Pokemon(100,200, 300, 500, choice_lst[0])
+            current_Pokemon = game_Pokemon(100,150, 400, 500, choice_lst[0])
             enemy_Pokemon = game_Pokemon(700, 0, 900, 200, choice_lst[0])
             current_Pokemon.show_image(screen)
             current_Pokemon.show_status(screen, font)
@@ -203,7 +206,7 @@ def main():
             ab2lst = ability2.coordinates()
             ab3lst = ability3.coordinates()
             ab4lst = ability4.coordinates()
-
+            
             if(active_ability1):
                 received_dict = client.battle(current_Pokemon.pokemon, current_Pokemon.pokemon.move_lst[0])
                 change(current_Pokemon.pokemon, received_dict['my_pkmn'])
@@ -220,10 +223,10 @@ def main():
                 received_dict = client.battle(current_Pokemon.pokemon, current_Pokemon.pokemon.move_lst[3])
                 change(current_Pokemon.pokemon, received_dict['my_pkmn'])
                 change(enemy_Pokemon.pokemon, received_dict['op_pkmn'])
-
+            
             enemy_Pokemon.show_image(screen)
             enemy_Pokemon.show_statusE(screen, font)
-
+        
             #client.battle(pokemon, move) references
             # received_dict = client.battle(pokemon, move)
             # one boolean in dict will control attack order
@@ -265,7 +268,11 @@ def main():
                         active_ability3 = True
                     elif check_Bounds(ab4lst) and active_Screen4:
                         active_ability4 = True
-                
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            active_search = True
+                            active_Screen3 = True
+            
             
                 
                     
