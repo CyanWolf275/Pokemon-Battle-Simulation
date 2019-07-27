@@ -17,7 +17,6 @@ BACKPACK_SIZE = 6
 # jumps to external terminal
 # name becomes input 
 # search for name within pokemon pool
-# 
 
 class game_Pokemon(pygame.sprite.Sprite):
     def __init__(self, x, y, x2, y2, Pokemon):
