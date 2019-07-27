@@ -259,19 +259,15 @@ def main():
                     active_Screen3 = True
                 if check_Bounds(srchLst) and active_Screen3:
                     active_search = True
-                if finished_choice:
-                    if check_Bounds(ab1lst) and active_Screen4:
-                        active_ability1 = True
-                    elif check_Bounds(ab2lst) and active_Screen4:
-                        active_ability2 = True
-                    elif check_Bounds(ab3lst) and active_Screen4:
-                        active_ability3 = True
-                    elif check_Bounds(ab4lst) and active_Screen4:
-                        active_ability4 = True
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_ESCAPE:
-                            active_search = True
-                            active_Screen3 = True
+                
+                if check_Bounds(ab1lst) and active_Screen4:
+                    active_ability1 = True
+                elif check_Bounds(ab2lst) and active_Screen4:
+                    active_ability2 = True
+                elif check_Bounds(ab3lst) and active_Screen4:
+                    active_ability3 = True
+                elif check_Bounds(ab4lst) and active_Screen4:
+                    active_ability4 = True
             
             
                 
